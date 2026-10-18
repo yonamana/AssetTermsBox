@@ -242,7 +242,7 @@
             // 
             button18.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             button18.BackColor = Color.FromArgb(255, 255, 192);
-            button18.Location = new Point(1468, 786);
+            button18.Location = new Point(957, 903);
             button18.Name = "button18";
             button18.Size = new Size(98, 34);
             button18.TabIndex = 20;

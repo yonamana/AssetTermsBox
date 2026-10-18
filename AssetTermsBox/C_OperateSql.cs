@@ -6,7 +6,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
-namespace ManageWorks
+namespace SqlOperate
 {
     /// <summary>
     /// SQL管理
