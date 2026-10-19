@@ -53,6 +53,44 @@ namespace AssetTermsBox
             return fileName;
         }
 
+        static public string OpenSoundFile(string relativePath)
+        {
+            string fileName = "";
+
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            //[ファイルの種類]に表示される選択肢を指定する
+            ofd.Filter = "WAV、MP3ファイル(*.wav;*.mp3)|*.wav;*.mp3";
+            ofd.Filter += "|All files (*.*)|*.*";
+            //タイトルを設定する
+            ofd.Title = "画像の選択";
+            //ダイアログボックスを閉じる前に現在のディレクトリを復元するようにする
+            ofd.RestoreDirectory = true;
+
+            if (relativePath != "")
+            {
+                string rootFolderPath = System.IO.Path.GetFullPath(relativePath);
+                ofd.InitialDirectory = rootFolderPath;
+            }
+
+
+            //ダイアログを表示する
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                if (File.Exists(ofd.FileName) == false)
+                {
+                    C_MessageBox.Error("ファイルが存在しません。");
+                    ofd.Dispose();
+                    return "";
+                }
+
+                fileName = ofd.FileName;
+            }
+
+            ofd.Dispose();
+            return fileName;
+        }
+
         /// <summary>
         /// フォルダ選択ダイアログを表示
         /// </summary>

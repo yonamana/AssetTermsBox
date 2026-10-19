@@ -14,5 +14,10 @@ namespace AssetTermsBox
         {
             InitializeComponent();
         }
+
+        private void FormClose(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }

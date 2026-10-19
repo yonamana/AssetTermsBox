@@ -163,11 +163,23 @@ namespace AssetTermsBox
 
         private void UI_BtnFile_Click(object sender, EventArgs e)
         {
-            string GetFileName = C_Dialog.OpenImageFile("");
-            if (GetFileName != "")
+            if (kindsValue == 1)
             {
-                UI_TextFile.Text = GetFileName;
-                UI_TextAssetName.Text = Path.GetFileName(GetFileName);
+                string GetFileName = C_Dialog.OpenImageFile("");
+                if (GetFileName != "")
+                {
+                    UI_TextFile.Text = GetFileName;
+                    UI_TextAssetName.Text = Path.GetFileName(GetFileName);
+                }
+            }
+            else if (kindsValue == 2)
+            {
+                string GetFileName = C_Dialog.OpenSoundFile("");
+                if (GetFileName != "")
+                {
+                    UI_TextFile.Text = GetFileName;
+                    UI_TextAssetName.Text = Path.GetFileName(GetFileName);
+                }
             }
 
             return;

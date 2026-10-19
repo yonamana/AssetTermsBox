@@ -99,6 +99,7 @@
             UI_DataGridView.Size = new Size(708, 772);
             UI_DataGridView.TabIndex = 1;
             UI_DataGridView.Click += UI_DataGridView_Click;
+            UI_DataGridView.MouseDown += UI_DataGridView_MouseDown;
             // 
             // id
             // 

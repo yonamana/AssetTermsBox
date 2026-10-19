@@ -1,5 +1,9 @@
-
+using System.IO;
+using System.Windows;
+using System.Windows.Input;
 using System.Collections;
+using System.Security.Cryptography.Xml;
+using static System.Net.WebRequestMethods;
 
 namespace AssetTermsBox
 {
@@ -16,7 +20,7 @@ namespace AssetTermsBox
 
         private void UI_BtnWorkCreate_Click(object sender, EventArgs e)
         {
-
+            C_ManageForm.StartWorkStart();
         }
 
         private void UI_BtnAssetInsert_Click(object sender, EventArgs e)
@@ -229,6 +233,58 @@ namespace AssetTermsBox
             UI_TextCommonTerms.Text = holderData["terms"];
 
             return;
+        }
+
+        private void UI_DataGridView_MouseDown(object sender, MouseEventArgs e)
+        {
+            SelectRow();
+
+            if (kindsValue == 3 || kindsValue == 4 || kindsValue == 5)
+            {
+                return;
+            }
+
+            // マウスの位置にあるセルを取得
+            var hitTest = UI_DataGridView.HitTest(e.X, e.Y);
+
+            // 左クリックが行われた場合
+            if (e.Button == MouseButtons.Left)
+            {
+                if (UI_DataGridView.Rows.Count < hitTest.RowIndex || hitTest.RowIndex < 0)
+                {
+                    return;
+                }
+
+                // ファイルを取得してファイルパスにする
+                string id = UI_DataGridView.Rows[hitTest.RowIndex]?.Cells["id"]?.Value?.ToString() ?? "";
+                if (id == "")
+                {
+                    return;
+                }
+
+                string workAssetIdPath = C_CreatePath.WorkFileAssetIdPath(id);
+                if (!Directory.Exists(workAssetIdPath))
+                {
+                    // フォルダがないためドラッグを行わない
+                    return;
+                }
+
+                string[] files = System.IO.Directory.GetFiles(workAssetIdPath, "*", System.IO.SearchOption.AllDirectories);
+                if (files.Length == 0)
+                {
+                    // ファイルがないためドラッグを行わない
+                    return;
+                }
+
+                string filePath = files[0];
+                string FullFilePath = Path.GetFullPath(filePath);
+                System.Windows.Forms.DataObject data = new System.Windows.Forms.DataObject(DataFormats.FileDrop, new string[] { FullFilePath });
+
+                // ドラッグ操作を開始
+                UI_DataGridView.DoDragDrop(data, DragDropEffects.Copy);
+
+                return;
+            }
         }
 
 

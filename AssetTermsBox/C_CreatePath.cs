@@ -21,31 +21,15 @@ namespace AssetTermsBox
             string filePath = "work\\" + assetId;
             return filePath;
         }
-        
-        /// <summary>
-        /// thumbnailフォルダのサムネイルまでの相対パスを作成
-        /// </summary>
-        /// <param name="creator"></param>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        static public string ThumbnailFolderPath(string creator, string name)
-        {
-            string folderPath = "thumbnail/" + creator + "/" + name;
-            return folderPath;
-        }
 
-        /// <summary>
-        /// thumbnailフォルダのサムネイル画像の相対パスを作成
-        /// </summary>
-        /// <param name="creator"></param>
-        /// <param name="name"></param>
-        /// <param name="thumbnailName"></param>
-        /// <returns></returns>
-        static public string ThumbnailPath(string creator, string name, string thumbnailName)
+        static public string WorkDataPath()
         {
-            string filePath = ThumbnailFolderPath(creator, name) + "/" + thumbnailName;
+            string filePath = "workData\\";
             return filePath;
         }
+        
+
+
 
         /// <summary>
         /// deleteFileフォルダの削除ファイルの相対パスを作成

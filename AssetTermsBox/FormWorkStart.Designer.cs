@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox6 = new TextBox();
+            UI_TextNewName = new TextBox();
             label8 = new Label();
-            button3 = new Button();
+            UI_BtnCreate = new Button();
             SuspendLayout();
             // 
-            // textBox6
+            // UI_TextNewName
             // 
-            textBox6.Location = new Point(12, 37);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(354, 31);
-            textBox6.TabIndex = 37;
+            UI_TextNewName.Location = new Point(12, 37);
+            UI_TextNewName.Name = "UI_TextNewName";
+            UI_TextNewName.Size = new Size(354, 31);
+            UI_TextNewName.TabIndex = 37;
             // 
             // label8
             // 
@@ -49,33 +49,34 @@
             label8.TabIndex = 36;
             label8.Text = "新作業名";
             // 
-            // button3
+            // UI_BtnCreate
             // 
-            button3.Location = new Point(268, 111);
-            button3.Name = "button3";
-            button3.Size = new Size(98, 56);
-            button3.TabIndex = 49;
-            button3.Text = "作成";
-            button3.UseVisualStyleBackColor = true;
+            UI_BtnCreate.Location = new Point(268, 111);
+            UI_BtnCreate.Name = "UI_BtnCreate";
+            UI_BtnCreate.Size = new Size(98, 56);
+            UI_BtnCreate.TabIndex = 49;
+            UI_BtnCreate.Text = "作成";
+            UI_BtnCreate.UseVisualStyleBackColor = true;
             // 
             // FormWorkStart
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(378, 179);
-            Controls.Add(button3);
-            Controls.Add(textBox6);
+            Controls.Add(UI_BtnCreate);
+            Controls.Add(UI_TextNewName);
             Controls.Add(label8);
             Name = "FormWorkStart";
             Text = "作業：新規作成";
+            FormClosed += FormClose;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TextBox textBox6;
+        private TextBox UI_TextNewName;
         private Label label8;
-        private Button button3;
+        private Button UI_BtnCreate;
     }
 }
