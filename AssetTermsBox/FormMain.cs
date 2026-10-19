@@ -38,6 +38,7 @@ namespace AssetTermsBox
             UI_BtnKindsSpeech.BackColor = Color.White;
             UI_BtnKindsOther.BackColor = Color.White;
             Display();
+            SelectFirstRow();
         }
 
         private void UI_BtnKindsSound_Click(object sender, EventArgs e)
@@ -50,6 +51,7 @@ namespace AssetTermsBox
             UI_BtnKindsSpeech.BackColor = Color.White;
             UI_BtnKindsOther.BackColor = Color.White;
             Display();
+            SelectFirstRow();
         }
 
         private void UI_BtnKindsFont_Click(object sender, EventArgs e)
@@ -62,6 +64,7 @@ namespace AssetTermsBox
             UI_BtnKindsSpeech.BackColor = Color.White;
             UI_BtnKindsOther.BackColor = Color.White;
             Display();
+            SelectFirstRow();
         }
 
         private void UI_BtnKindsSpeech_Click(object sender, EventArgs e)
@@ -74,6 +77,7 @@ namespace AssetTermsBox
             UI_BtnKindsSpeech.BackColor = Color.FromArgb(192, 192, 255);
             UI_BtnKindsOther.BackColor = Color.White;
             Display();
+            SelectFirstRow();
         }
 
         private void UI_BtnKindsOther_Click(object sender, EventArgs e)
@@ -86,6 +90,7 @@ namespace AssetTermsBox
             UI_BtnKindsSpeech.BackColor = Color.White;
             UI_BtnKindsOther.BackColor = Color.FromArgb(192, 192, 255);
             Display();
+            SelectFirstRow();
         }
 
         private void UI_DataGridView_Click(object sender, EventArgs e)
@@ -98,6 +103,8 @@ namespace AssetTermsBox
         {
             Display();
             SelectRow();
+
+            UI_TextWorkFile.Text = C_ManageWorkDataFile.GetWorkDataFilePath();
         }
 
 
@@ -212,6 +219,16 @@ namespace AssetTermsBox
             return;
         }
 
+        private void SelectFirstRow()
+        {
+            if (UI_DataGridView.Rows.Count > 0)
+            {
+                UI_DataGridView.Rows[0].Selected = true;
+                SelectRow();
+            }
+            return;
+        }
+
 
         // 行選択時
         private void SelectRow()
@@ -231,6 +248,18 @@ namespace AssetTermsBox
             // SELECT: HOLDER
             Dictionary<string, string> holderData = TD_HOLDER.SelectDataOne(assetData["holder_id"]);
             UI_TextCommonTerms.Text = holderData["terms"];
+
+            // 使用中の場合
+            if (C_ManageWorkDataFile.CheckUsedAsset(assetId) == true)
+            {
+                UI_BtnAssetUse.BackColor = Color.FromArgb(192, 255, 192);
+            }
+            // 未使用の場合
+            else
+            {
+                UI_BtnAssetUse.BackColor = Color.White;
+            }
+
 
             return;
         }
@@ -281,20 +310,49 @@ namespace AssetTermsBox
                 System.Windows.Forms.DataObject data = new System.Windows.Forms.DataObject(DataFormats.FileDrop, new string[] { FullFilePath });
 
                 // ドラッグ操作を開始
-                UI_DataGridView.DoDragDrop(data, DragDropEffects.Copy);
+                DragDropEffects result = UI_DataGridView.DoDragDrop(data, DragDropEffects.Copy);
+
+                // ドロップ処理成功時
+                if (result != DragDropEffects.None)
+                {
+                    C_ManageWorkDataFile.UsedAsset(id);
+
+                    UI_BtnAssetUse.BackColor = Color.FromArgb(192, 255, 192);
+                }
 
                 return;
             }
         }
 
+        private void UI_BtnAssetUse_Click(object sender, EventArgs e)
+        {
+            string id = UI_DataGridView.CurrentRow?.Cells["id"].Value?.ToString() ?? "";
+            if (id == "")
+            {
+                return;
+            }
+
+            // 使用中の場合
+            if (C_ManageWorkDataFile.CheckUsedAsset(id) == true)
+            {
+                C_ManageWorkDataFile.UnUsedAsset(id);
+
+                UI_BtnAssetUse.BackColor = Color.White;
+            }
+            // 未使用の場合
+            else
+            {
+                C_ManageWorkDataFile.UsedAsset(id);
+
+                UI_BtnAssetUse.BackColor = Color.FromArgb(192, 255, 192);
+            }
+
+            return;
+        }
 
 
 
 
-
-
-
-        // ドラッグ時
 
 
     }

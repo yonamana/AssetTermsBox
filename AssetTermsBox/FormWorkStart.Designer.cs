@@ -57,6 +57,7 @@
             UI_BtnCreate.TabIndex = 49;
             UI_BtnCreate.Text = "作成";
             UI_BtnCreate.UseVisualStyleBackColor = true;
+            UI_BtnCreate.Click += UI_BtnCreate_Click;
             // 
             // FormWorkStart
             // 

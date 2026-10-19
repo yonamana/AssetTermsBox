@@ -71,6 +71,7 @@
             UI_BtnAssetInsert = new Button();
             UI_BtnAssetUpdate = new Button();
             UI_BtnAssetDelete = new Button();
+            UI_TextWorkFile = new TextBox();
             ((System.ComponentModel.ISupportInitialize)UI_DataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -223,6 +224,7 @@
             UI_BtnAssetUse.TabIndex = 10;
             UI_BtnAssetUse.Text = "選択素材を使用";
             UI_BtnAssetUse.UseVisualStyleBackColor = true;
+            UI_BtnAssetUse.Click += UI_BtnAssetUse_Click;
             // 
             // UI_BtnAssetAlwaysUse
             // 
@@ -507,12 +509,22 @@
             UI_BtnAssetDelete.Text = "削除";
             UI_BtnAssetDelete.UseVisualStyleBackColor = false;
             // 
+            // UI_TextWorkFile
+            // 
+            UI_TextWorkFile.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            UI_TextWorkFile.Location = new Point(12, 83);
+            UI_TextWorkFile.Name = "UI_TextWorkFile";
+            UI_TextWorkFile.ReadOnly = true;
+            UI_TextWorkFile.Size = new Size(306, 31);
+            UI_TextWorkFile.TabIndex = 46;
+            // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             ClientSize = new Size(1578, 944);
+            Controls.Add(UI_TextWorkFile);
             Controls.Add(UI_BtnAssetInsert);
             Controls.Add(UI_BtnAssetUpdate);
             Controls.Add(UI_BtnAssetDelete);
@@ -607,5 +619,6 @@
         private DataGridViewTextBoxColumn name;
         private DataGridViewTextBoxColumn holderName;
         private DataGridViewTextBoxColumn bookmark;
+        private TextBox UI_TextWorkFile;
     }
 }

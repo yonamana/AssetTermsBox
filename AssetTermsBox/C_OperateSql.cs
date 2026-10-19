@@ -20,33 +20,6 @@ namespace SqlOperate
 
         }
 
-        public string GetLastPrimaryKey(string tableName)
-        {
-            SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = dbKey;
-            cn.Open();
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = cn;
-            cmd.CommandType = CommandType.Text;
-
-            string str = "SELECT SCOPE_IDENTITY() as id FROM " + tableName;
-
-            // 実行
-            cmd.CommandText = str;
-
-            SqlDataReader rd;
-            rd = cmd.ExecuteReader();
-
-            string primaryKey = "";
-            while (rd.Read())
-            {
-                primaryKey = String.Format("{0}", rd["id"]);
-                break;
-            }
-            return primaryKey;
-        }
-
         /// <summary>
         /// SQL: INSERT
         /// </summary>
