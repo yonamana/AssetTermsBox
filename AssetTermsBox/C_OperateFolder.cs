@@ -52,7 +52,7 @@ namespace FolderOpearete
         /// <param name="before"></param>
         /// <param name="after"></param>
         /// <returns></returns>
-        public bool Copy(string before, string after)
+        public bool FolderCopy(string before, string after)
         {
             // UTF16をUTF8に変換
             string utf8_before = Utf16ToUtf8(before);
@@ -67,12 +67,12 @@ namespace FolderOpearete
         }
 
         /// <summary>
-        /// ファイルを移動
+        /// フォルダを移動
         /// </summary>
         /// <param name="before"></param>
         /// <param name="after"></param>
         /// <returns></returns>
-        public bool Move(string before, string after)
+        public bool FolderMove(string before, string after)
         {
             string utf8_before = Utf16ToUtf8(before);
             string utf8_after = Utf16ToUtf8(after);
@@ -90,6 +90,17 @@ namespace FolderOpearete
             return true;
         }
 
+        // ファイルの移動
+        public bool FileMove(string beforePath, string afterPath)
+        {
+            string utf8_beforePath = Utf16ToUtf8(beforePath);
+            string utf8_afterPath = Utf16ToUtf8(afterPath);
+
+            // ファイルのコピー
+            System.IO.File.Move(utf8_beforePath, utf8_afterPath, true);
+
+            return true;
+        }
 
         /// <summary>
         /// ファイルのコピー
@@ -97,7 +108,7 @@ namespace FolderOpearete
         /// <param name="filePath"></param>
         /// <param name="thumbnailPath"></param>
         /// <returns></returns>
-        public bool thumbnailCopy(string filePath, string thumbnailPath)
+        public bool FileCopy(string filePath, string thumbnailPath)
         {
             string utf8_filePath = Utf16ToUtf8(filePath);
             string utf8_thumbnailPath = Utf16ToUtf8(thumbnailPath);

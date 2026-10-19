@@ -23,16 +23,11 @@ namespace AssetTermsBox
 
             //[ファイルの種類]に表示される選択肢を指定する
             ofd.Filter = "PNG、JPGファイル(*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg";
+            ofd.Filter += "|All files (*.*)|*.*";
             //タイトルを設定する
-            ofd.Title = "サムネイル画像の選択";
+            ofd.Title = "画像の選択";
             //ダイアログボックスを閉じる前に現在のディレクトリを復元するようにする
             ofd.RestoreDirectory = true;
-            //存在しないファイルの名前が指定されたとき警告を表示する
-            //デフォルトでTrueなので指定する必要はない
-            ofd.CheckFileExists = true;
-            //存在しないパスが指定されたとき警告を表示する
-            //デフォルトでTrueなので指定する必要はない
-            ofd.CheckPathExists = true;
 
             if (relativePath != "")
             {

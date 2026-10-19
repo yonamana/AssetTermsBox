@@ -28,93 +28,101 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button8 = new Button();
-            button7 = new Button();
-            button6 = new Button();
-            button5 = new Button();
-            button4 = new Button();
-            button1 = new Button();
-            textBox1 = new TextBox();
+            UI_BtnKindsOther = new Button();
+            UI_BtnKindsSpeech = new Button();
+            UI_BtnKindsFont = new Button();
+            UI_BtnKindsSound = new Button();
+            UI_BtnKindsImage = new Button();
+            UI_BtnFile = new Button();
+            UI_TextFile = new TextBox();
             label3 = new Label();
-            textBox2 = new TextBox();
+            UI_TextAssetName = new TextBox();
             label1 = new Label();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
+            UI_TextCommonTerms = new TextBox();
+            UI_TextTerms = new TextBox();
+            UI_TextMemo = new TextBox();
             label6 = new Label();
             label5 = new Label();
             label4 = new Label();
-            checkedListBox1 = new CheckedListBox();
+            UI_CheckedListTag = new CheckedListBox();
             label10 = new Label();
             button2 = new Button();
-            button3 = new Button();
+            UI_BtnInsert = new Button();
             label2 = new Label();
-            textBox7 = new TextBox();
-            comboBox1 = new ComboBox();
+            UI_TextParent = new TextBox();
+            UI_ComboHolderName = new ComboBox();
+            UI_CheckBookmark = new CheckBox();
             SuspendLayout();
             // 
-            // button8
+            // UI_BtnKindsOther
             // 
-            button8.Location = new Point(428, 12);
-            button8.Name = "button8";
-            button8.Size = new Size(98, 65);
-            button8.TabIndex = 13;
-            button8.Text = "その他";
-            button8.UseVisualStyleBackColor = true;
+            UI_BtnKindsOther.Location = new Point(428, 12);
+            UI_BtnKindsOther.Name = "UI_BtnKindsOther";
+            UI_BtnKindsOther.Size = new Size(98, 65);
+            UI_BtnKindsOther.TabIndex = 13;
+            UI_BtnKindsOther.Text = "その他";
+            UI_BtnKindsOther.UseVisualStyleBackColor = true;
+            UI_BtnKindsOther.Click += UI_BtnKindsOther_Click;
             // 
-            // button7
+            // UI_BtnKindsSpeech
             // 
-            button7.Location = new Point(324, 12);
-            button7.Name = "button7";
-            button7.Size = new Size(98, 65);
-            button7.TabIndex = 12;
-            button7.Text = "合成音声";
-            button7.UseVisualStyleBackColor = true;
+            UI_BtnKindsSpeech.Location = new Point(324, 12);
+            UI_BtnKindsSpeech.Name = "UI_BtnKindsSpeech";
+            UI_BtnKindsSpeech.Size = new Size(98, 65);
+            UI_BtnKindsSpeech.TabIndex = 12;
+            UI_BtnKindsSpeech.Text = "合成音声";
+            UI_BtnKindsSpeech.UseVisualStyleBackColor = true;
+            UI_BtnKindsSpeech.Click += UI_BtnKindsSpeech_Click;
             // 
-            // button6
+            // UI_BtnKindsFont
             // 
-            button6.Location = new Point(220, 12);
-            button6.Name = "button6";
-            button6.Size = new Size(98, 65);
-            button6.TabIndex = 11;
-            button6.Text = "フォント";
-            button6.UseVisualStyleBackColor = true;
+            UI_BtnKindsFont.BackColor = Color.White;
+            UI_BtnKindsFont.Location = new Point(220, 12);
+            UI_BtnKindsFont.Name = "UI_BtnKindsFont";
+            UI_BtnKindsFont.Size = new Size(98, 65);
+            UI_BtnKindsFont.TabIndex = 11;
+            UI_BtnKindsFont.Text = "フォント";
+            UI_BtnKindsFont.UseVisualStyleBackColor = false;
+            UI_BtnKindsFont.Click += UI_BtnKindsFont_Click;
             // 
-            // button5
+            // UI_BtnKindsSound
             // 
-            button5.Location = new Point(116, 12);
-            button5.Name = "button5";
-            button5.Size = new Size(98, 65);
-            button5.TabIndex = 10;
-            button5.Text = "音声";
-            button5.UseVisualStyleBackColor = true;
+            UI_BtnKindsSound.Location = new Point(116, 12);
+            UI_BtnKindsSound.Name = "UI_BtnKindsSound";
+            UI_BtnKindsSound.Size = new Size(98, 65);
+            UI_BtnKindsSound.TabIndex = 10;
+            UI_BtnKindsSound.Text = "音声";
+            UI_BtnKindsSound.UseVisualStyleBackColor = true;
+            UI_BtnKindsSound.Click += UI_BtnKindsSound_Click;
             // 
-            // button4
+            // UI_BtnKindsImage
             // 
-            button4.BackColor = Color.FromArgb(192, 192, 255);
-            button4.Location = new Point(12, 12);
-            button4.Name = "button4";
-            button4.Size = new Size(98, 65);
-            button4.TabIndex = 9;
-            button4.Text = "画像";
-            button4.UseVisualStyleBackColor = false;
+            UI_BtnKindsImage.BackColor = Color.FromArgb(192, 192, 255);
+            UI_BtnKindsImage.Location = new Point(12, 12);
+            UI_BtnKindsImage.Name = "UI_BtnKindsImage";
+            UI_BtnKindsImage.Size = new Size(98, 65);
+            UI_BtnKindsImage.TabIndex = 9;
+            UI_BtnKindsImage.Text = "画像";
+            UI_BtnKindsImage.UseVisualStyleBackColor = false;
+            UI_BtnKindsImage.Click += UI_BtnKindsImage_Click;
             // 
-            // button1
+            // UI_BtnFile
             // 
-            button1.Location = new Point(12, 98);
-            button1.Name = "button1";
-            button1.Size = new Size(113, 65);
-            button1.TabIndex = 14;
-            button1.Text = "素材ファイル";
-            button1.UseVisualStyleBackColor = true;
+            UI_BtnFile.Location = new Point(12, 98);
+            UI_BtnFile.Name = "UI_BtnFile";
+            UI_BtnFile.Size = new Size(113, 65);
+            UI_BtnFile.TabIndex = 14;
+            UI_BtnFile.Text = "素材ファイル";
+            UI_BtnFile.UseVisualStyleBackColor = true;
+            UI_BtnFile.Click += UI_BtnFile_Click;
             // 
-            // textBox1
+            // UI_TextFile
             // 
-            textBox1.Location = new Point(131, 115);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(535, 31);
-            textBox1.TabIndex = 30;
+            UI_TextFile.Location = new Point(131, 115);
+            UI_TextFile.Name = "UI_TextFile";
+            UI_TextFile.ReadOnly = true;
+            UI_TextFile.Size = new Size(535, 31);
+            UI_TextFile.TabIndex = 30;
             // 
             // label3
             // 
@@ -125,12 +133,12 @@
             label3.TabIndex = 36;
             label3.Text = "素材名";
             // 
-            // textBox2
+            // UI_TextAssetName
             // 
-            textBox2.Location = new Point(131, 171);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(535, 31);
-            textBox2.TabIndex = 35;
+            UI_TextAssetName.Location = new Point(131, 171);
+            UI_TextAssetName.Name = "UI_TextAssetName";
+            UI_TextAssetName.Size = new Size(535, 31);
+            UI_TextAssetName.TabIndex = 35;
             // 
             // label1
             // 
@@ -141,38 +149,38 @@
             label1.TabIndex = 38;
             label1.Text = "権利元名";
             // 
-            // textBox4
+            // UI_TextCommonTerms
             // 
-            textBox4.AcceptsReturn = true;
-            textBox4.Location = new Point(131, 245);
-            textBox4.Multiline = true;
-            textBox4.Name = "textBox4";
-            textBox4.ScrollBars = ScrollBars.Both;
-            textBox4.Size = new Size(535, 153);
-            textBox4.TabIndex = 46;
-            textBox4.WordWrap = false;
+            UI_TextCommonTerms.AcceptsReturn = true;
+            UI_TextCommonTerms.Location = new Point(131, 245);
+            UI_TextCommonTerms.Multiline = true;
+            UI_TextCommonTerms.Name = "UI_TextCommonTerms";
+            UI_TextCommonTerms.ScrollBars = ScrollBars.Both;
+            UI_TextCommonTerms.Size = new Size(535, 153);
+            UI_TextCommonTerms.TabIndex = 46;
+            UI_TextCommonTerms.WordWrap = false;
             // 
-            // textBox5
+            // UI_TextTerms
             // 
-            textBox5.AcceptsReturn = true;
-            textBox5.Location = new Point(131, 404);
-            textBox5.Multiline = true;
-            textBox5.Name = "textBox5";
-            textBox5.ScrollBars = ScrollBars.Both;
-            textBox5.Size = new Size(535, 153);
-            textBox5.TabIndex = 45;
-            textBox5.WordWrap = false;
+            UI_TextTerms.AcceptsReturn = true;
+            UI_TextTerms.Location = new Point(131, 404);
+            UI_TextTerms.Multiline = true;
+            UI_TextTerms.Name = "UI_TextTerms";
+            UI_TextTerms.ScrollBars = ScrollBars.Both;
+            UI_TextTerms.Size = new Size(535, 153);
+            UI_TextTerms.TabIndex = 45;
+            UI_TextTerms.WordWrap = false;
             // 
-            // textBox6
+            // UI_TextMemo
             // 
-            textBox6.AcceptsReturn = true;
-            textBox6.Location = new Point(131, 600);
-            textBox6.Multiline = true;
-            textBox6.Name = "textBox6";
-            textBox6.ScrollBars = ScrollBars.Both;
-            textBox6.Size = new Size(535, 153);
-            textBox6.TabIndex = 44;
-            textBox6.WordWrap = false;
+            UI_TextMemo.AcceptsReturn = true;
+            UI_TextMemo.Location = new Point(131, 600);
+            UI_TextMemo.Multiline = true;
+            UI_TextMemo.Name = "UI_TextMemo";
+            UI_TextMemo.ScrollBars = ScrollBars.Both;
+            UI_TextMemo.Size = new Size(535, 153);
+            UI_TextMemo.TabIndex = 44;
+            UI_TextMemo.WordWrap = false;
             // 
             // label6
             // 
@@ -201,13 +209,13 @@
             label4.TabIndex = 41;
             label4.Text = "メモ";
             // 
-            // checkedListBox1
+            // UI_CheckedListTag
             // 
-            checkedListBox1.FormattingEnabled = true;
-            checkedListBox1.Location = new Point(695, 149);
-            checkedListBox1.Name = "checkedListBox1";
-            checkedListBox1.Size = new Size(306, 452);
-            checkedListBox1.TabIndex = 48;
+            UI_CheckedListTag.FormattingEnabled = true;
+            UI_CheckedListTag.Location = new Point(695, 149);
+            UI_CheckedListTag.Name = "UI_CheckedListTag";
+            UI_CheckedListTag.Size = new Size(306, 452);
+            UI_CheckedListTag.TabIndex = 48;
             // 
             // label10
             // 
@@ -227,14 +235,15 @@
             button2.Text = "タグ登録";
             button2.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // UI_BtnInsert
             // 
-            button3.Location = new Point(1004, 664);
-            button3.Name = "button3";
-            button3.Size = new Size(161, 89);
-            button3.TabIndex = 50;
-            button3.Text = "登録";
-            button3.UseVisualStyleBackColor = true;
+            UI_BtnInsert.Location = new Point(1004, 664);
+            UI_BtnInsert.Name = "UI_BtnInsert";
+            UI_BtnInsert.Size = new Size(161, 89);
+            UI_BtnInsert.TabIndex = 50;
+            UI_BtnInsert.Text = "登録";
+            UI_BtnInsert.UseVisualStyleBackColor = true;
+            UI_BtnInsert.Click += UI_BtnInsert_Click;
             // 
             // label2
             // 
@@ -245,79 +254,94 @@
             label2.TabIndex = 52;
             label2.Text = "親登録ID";
             // 
-            // textBox7
+            // UI_TextParent
             // 
-            textBox7.Location = new Point(131, 563);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(535, 31);
-            textBox7.TabIndex = 51;
+            UI_TextParent.Location = new Point(131, 563);
+            UI_TextParent.Name = "UI_TextParent";
+            UI_TextParent.Size = new Size(535, 31);
+            UI_TextParent.TabIndex = 51;
             // 
-            // comboBox1
+            // UI_ComboHolderName
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(131, 206);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(535, 33);
-            comboBox1.TabIndex = 53;
+            UI_ComboHolderName.FormattingEnabled = true;
+            UI_ComboHolderName.Location = new Point(131, 206);
+            UI_ComboHolderName.Name = "UI_ComboHolderName";
+            UI_ComboHolderName.Size = new Size(535, 33);
+            UI_ComboHolderName.TabIndex = 53;
+            UI_ComboHolderName.Leave += UI_ComboHolderName_Leave;
+            // 
+            // UI_CheckBookmark
+            // 
+            UI_CheckBookmark.AutoSize = true;
+            UI_CheckBookmark.CheckAlign = ContentAlignment.MiddleRight;
+            UI_CheckBookmark.Location = new Point(695, 619);
+            UI_CheckBookmark.Name = "UI_CheckBookmark";
+            UI_CheckBookmark.Size = new Size(115, 29);
+            UI_CheckBookmark.TabIndex = 54;
+            UI_CheckBookmark.Text = "ブックマーク";
+            UI_CheckBookmark.UseVisualStyleBackColor = true;
             // 
             // FormAssetInsert
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1177, 767);
-            Controls.Add(comboBox1);
+            Controls.Add(UI_CheckBookmark);
+            Controls.Add(UI_ComboHolderName);
             Controls.Add(label2);
-            Controls.Add(textBox7);
-            Controls.Add(button3);
+            Controls.Add(UI_TextParent);
+            Controls.Add(UI_BtnInsert);
             Controls.Add(button2);
-            Controls.Add(checkedListBox1);
+            Controls.Add(UI_CheckedListTag);
             Controls.Add(label10);
-            Controls.Add(textBox4);
-            Controls.Add(textBox5);
-            Controls.Add(textBox6);
+            Controls.Add(UI_TextCommonTerms);
+            Controls.Add(UI_TextTerms);
+            Controls.Add(UI_TextMemo);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label1);
             Controls.Add(label3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(button1);
-            Controls.Add(button8);
-            Controls.Add(button7);
-            Controls.Add(button6);
-            Controls.Add(button5);
-            Controls.Add(button4);
+            Controls.Add(UI_TextAssetName);
+            Controls.Add(UI_TextFile);
+            Controls.Add(UI_BtnFile);
+            Controls.Add(UI_BtnKindsOther);
+            Controls.Add(UI_BtnKindsSpeech);
+            Controls.Add(UI_BtnKindsFont);
+            Controls.Add(UI_BtnKindsSound);
+            Controls.Add(UI_BtnKindsImage);
             Name = "FormAssetInsert";
             Text = "素材：登録";
+            FormClosed += FormClose;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button button8;
-        private Button button7;
-        private Button button6;
-        private Button button5;
-        private Button button4;
-        private Button button1;
-        private TextBox textBox1;
+        private Button UI_BtnKindsOther;
+        private Button UI_BtnKindsSpeech;
+        private Button UI_BtnKindsFont;
+        private Button UI_BtnKindsSound;
+        private Button UI_BtnKindsImage;
+        private TextBox UI_TextFile;
         private Label label3;
-        private TextBox textBox2;
+        private TextBox UI_TextAssetName;
         private Label label1;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private TextBox textBox6;
+        private TextBox UI_TextCommonTerms;
+        private TextBox UI_TextTerms;
+        private TextBox UI_TextMemo;
         private Label label6;
         private Label label5;
         private Label label4;
-        private CheckedListBox checkedListBox1;
+        private CheckedListBox UI_CheckedListTag;
         private Label label10;
         private Button button2;
-        private Button button3;
+        private Button UI_BtnInsert;
         private Label label2;
-        private TextBox textBox7;
-        private ComboBox comboBox1;
+        private TextBox UI_TextParent;
+        private ComboBox UI_ComboHolderName;
+        private Button UI_BtnFile;
+        private CheckBox UI_CheckBookmark;
     }
 }

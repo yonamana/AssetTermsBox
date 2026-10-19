@@ -9,22 +9,23 @@ namespace AssetTermsBox
     {
         const string TABLE_NAME = "HOLDER";
 
-        static public void InsertData()
+        static public string InsertData(string name, string terms)
         {
             C_OperateSql sql = new C_OperateSql();
-            string columns = "";
-            string values = "N''";
+            string columns = "name, terms";
+            string values = "N'" + name + "',";
+            values += "N'" + terms + "'";
 
-
-            sql.Insert(TABLE_NAME, columns, values);
+            return sql.InsertGetId(TABLE_NAME, columns, values);
         }
 
 
-        static public void UpdateData()
+        static public void UpdateData(string id, string name, string terms)
         {
             C_OperateSql sql = new C_OperateSql();
-            string setStr = "";
-            string where = "";
+            string setStr = "name = N'" + name + "',";
+            setStr += "terms = N'" + terms + "'";
+            string where = "id = " + id;
 
             sql.Update(TABLE_NAME, setStr, where);
         }
@@ -38,12 +39,26 @@ namespace AssetTermsBox
             return;
         }
 
+        static public string GetId(string name)
+        {
+            C_OperateSql sql = new C_OperateSql();
+            string[] columns = { "id" };
+
+            string where = "name = N'" + name + "'";
+            Dictionary<int, Dictionary<string, string>> result = sql.Select(TABLE_NAME, columns, where);
+            if (result.Count() == 0)
+            {
+                return "";
+            }
+            return result[0]["id"];
+        }
+
         static public Dictionary<string, string> SelectDataOne(string id)
         {
             C_OperateSql sql = new C_OperateSql();
-            string[] columns = { "id", "name", "creator", "favorite", "thumbnail" };
+            string[] columns = { "id", "name", "terms"};
 
-            string where = "";
+            string where = "id = " + id;
             Dictionary<int, Dictionary<string, string>> result = sql.Select(TABLE_NAME, columns, where);
             return result[0];
         }
@@ -51,9 +66,19 @@ namespace AssetTermsBox
         static public Dictionary<int, Dictionary<string, string>> SelectData()
         {
             C_OperateSql sql = new C_OperateSql();
-            string[] columns = { "id", "name", "creator", "favorite", "thumbnail" };
+            string[] columns = { "id", "name" };
 
             string where = "";
+            Dictionary<int, Dictionary<string, string>> result = sql.Select(TABLE_NAME, columns, where);
+            return result;
+        }
+
+        static public Dictionary<int, Dictionary<string, string>> GetTerms(string name)
+        {
+            C_OperateSql sql = new C_OperateSql();
+            string[] columns = { "terms" };
+
+            string where = "name = N'" + name + "'";
             Dictionary<int, Dictionary<string, string>> result = sql.Select(TABLE_NAME, columns, where);
             return result;
         }

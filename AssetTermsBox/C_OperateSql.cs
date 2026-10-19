@@ -20,6 +20,33 @@ namespace SqlOperate
 
         }
 
+        public string GetLastPrimaryKey(string tableName)
+        {
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = dbKey;
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandType = CommandType.Text;
+
+            string str = "SELECT SCOPE_IDENTITY() as id FROM " + tableName;
+
+            // 実行
+            cmd.CommandText = str;
+
+            SqlDataReader rd;
+            rd = cmd.ExecuteReader();
+
+            string primaryKey = "";
+            while (rd.Read())
+            {
+                primaryKey = String.Format("{0}", rd["id"]);
+                break;
+            }
+            return primaryKey;
+        }
+
         /// <summary>
         /// SQL: INSERT
         /// </summary>
@@ -46,6 +73,45 @@ namespace SqlOperate
             cn.Close();
 
             return true;
+        }
+
+        public string InsertGetId(string tableName, string columns, string values)
+        {
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = dbKey;
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader rd;
+            cmd.Connection = cn;
+            cmd.CommandType = CommandType.Text;
+
+            string str = "INSERT INTO " + tableName + " (" + columns + ") VALUES(" + values + ")";
+
+            cmd.CommandText = str;
+            rd = cmd.ExecuteReader();
+            rd.Close();
+
+            // SELECT
+            SqlCommand cmd2 = new SqlCommand();
+            cmd2.Connection = cn;
+            cmd2.CommandType = CommandType.Text;
+
+            string str2 = "SELECT SCOPE_IDENTITY() as id FROM " + tableName;
+
+            // 実行
+            cmd2.CommandText = str2;
+
+            SqlDataReader rd2;
+            rd2 = cmd2.ExecuteReader();
+
+            string primaryKey = "";
+            while (rd2.Read())
+            {
+                primaryKey = String.Format("{0}", rd2["id"]);
+                break;
+            }
+            return primaryKey;
         }
 
         /// <summary>

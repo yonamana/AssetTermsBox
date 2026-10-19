@@ -28,21 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            dataGridView1 = new DataGridView();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
-            button7 = new Button();
-            button8 = new Button();
-            button9 = new Button();
-            button10 = new Button();
-            button11 = new Button();
-            button12 = new Button();
-            button13 = new Button();
-            button14 = new Button();
+            UI_BtnWorkCreate = new Button();
+            UI_DataGridView = new DataGridView();
+            id = new DataGridViewTextBoxColumn();
+            name = new DataGridViewTextBoxColumn();
+            holderName = new DataGridViewTextBoxColumn();
+            bookmark = new DataGridViewTextBoxColumn();
+            UI_BtnWorkOpen = new Button();
+            UI_BtnWorkDelete = new Button();
+            UI_BtnKindsImage = new Button();
+            UI_BtnKindsSound = new Button();
+            UI_BtnKindsFont = new Button();
+            UI_BtnKindsSpeech = new Button();
+            UI_BtnKindsOther = new Button();
+            UI_BtnUsed = new Button();
+            UI_BtnAssetUse = new Button();
+            UI_BtnAssetAlwaysUse = new Button();
+            UI_BtnTagDelete = new Button();
+            UI_BtnTagUpdate = new Button();
+            UI_BtnTagInsert = new Button();
             label1 = new Label();
             label2 = new Label();
             button18 = new Button();
@@ -52,171 +56,214 @@
             label7 = new Label();
             label8 = new Label();
             label10 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox5 = new TextBox();
+            UI_TextTag = new TextBox();
+            UI_TextMemo = new TextBox();
+            UI_TextParent = new TextBox();
             label3 = new Label();
             textBox6 = new TextBox();
             checkedListBox1 = new CheckedListBox();
-            button19 = new Button();
-            button20 = new Button();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
+            UI_BtnSearch = new Button();
+            UI_BtnReset = new Button();
+            UI_TextTerms = new TextBox();
+            UI_TextCommonTerms = new TextBox();
             pictureBox1 = new PictureBox();
             checkBox1 = new CheckBox();
-            button15 = new Button();
-            button16 = new Button();
-            button17 = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            UI_BtnAssetInsert = new Button();
+            UI_BtnAssetUpdate = new Button();
+            UI_BtnAssetDelete = new Button();
+            ((System.ComponentModel.ISupportInitialize)UI_DataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // button1
+            // UI_BtnWorkCreate
             // 
-            button1.Location = new Point(12, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(98, 65);
-            button1.TabIndex = 0;
-            button1.Text = "新規作成";
-            button1.UseVisualStyleBackColor = true;
+            UI_BtnWorkCreate.Location = new Point(12, 12);
+            UI_BtnWorkCreate.Name = "UI_BtnWorkCreate";
+            UI_BtnWorkCreate.Size = new Size(98, 65);
+            UI_BtnWorkCreate.TabIndex = 0;
+            UI_BtnWorkCreate.Text = "新規作成";
+            UI_BtnWorkCreate.UseVisualStyleBackColor = true;
+            UI_BtnWorkCreate.Click += UI_BtnWorkCreate_Click;
             // 
-            // dataGridView1
+            // UI_DataGridView
             // 
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(347, 80);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(708, 772);
-            dataGridView1.TabIndex = 1;
+            UI_DataGridView.AllowUserToAddRows = false;
+            UI_DataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            UI_DataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            UI_DataGridView.Columns.AddRange(new DataGridViewColumn[] { id, name, holderName, bookmark });
+            UI_DataGridView.Location = new Point(347, 80);
+            UI_DataGridView.MultiSelect = false;
+            UI_DataGridView.Name = "UI_DataGridView";
+            UI_DataGridView.RowHeadersWidth = 62;
+            UI_DataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            UI_DataGridView.Size = new Size(708, 772);
+            UI_DataGridView.TabIndex = 1;
+            UI_DataGridView.Click += UI_DataGridView_Click;
             // 
-            // button2
+            // id
             // 
-            button2.Location = new Point(116, 12);
-            button2.Name = "button2";
-            button2.Size = new Size(98, 65);
-            button2.TabIndex = 2;
-            button2.Text = "開く";
-            button2.UseVisualStyleBackColor = true;
+            id.HeaderText = "id";
+            id.MinimumWidth = 8;
+            id.Name = "id";
+            id.ReadOnly = true;
+            id.Width = 50;
             // 
-            // button3
+            // name
             // 
-            button3.BackColor = Color.FromArgb(255, 192, 192);
-            button3.Location = new Point(220, 12);
-            button3.Name = "button3";
-            button3.Size = new Size(98, 65);
-            button3.TabIndex = 3;
-            button3.Text = "削除";
-            button3.UseVisualStyleBackColor = false;
+            name.HeaderText = "素材";
+            name.MinimumWidth = 8;
+            name.Name = "name";
+            name.ReadOnly = true;
+            name.Width = 400;
             // 
-            // button4
+            // holderName
             // 
-            button4.BackColor = Color.FromArgb(192, 192, 255);
-            button4.Location = new Point(347, 12);
-            button4.Name = "button4";
-            button4.Size = new Size(98, 65);
-            button4.TabIndex = 4;
-            button4.Text = "画像";
-            button4.UseVisualStyleBackColor = false;
+            holderName.HeaderText = "権利元";
+            holderName.MinimumWidth = 8;
+            holderName.Name = "holderName";
+            holderName.ReadOnly = true;
+            holderName.Width = 150;
             // 
-            // button5
+            // bookmark
             // 
-            button5.Location = new Point(451, 12);
-            button5.Name = "button5";
-            button5.Size = new Size(98, 65);
-            button5.TabIndex = 5;
-            button5.Text = "音声";
-            button5.UseVisualStyleBackColor = true;
+            bookmark.HeaderText = "★";
+            bookmark.MinimumWidth = 8;
+            bookmark.Name = "bookmark";
+            bookmark.ReadOnly = true;
+            bookmark.Width = 50;
             // 
-            // button6
+            // UI_BtnWorkOpen
             // 
-            button6.Location = new Point(555, 12);
-            button6.Name = "button6";
-            button6.Size = new Size(98, 65);
-            button6.TabIndex = 6;
-            button6.Text = "フォント";
-            button6.UseVisualStyleBackColor = true;
+            UI_BtnWorkOpen.Location = new Point(116, 12);
+            UI_BtnWorkOpen.Name = "UI_BtnWorkOpen";
+            UI_BtnWorkOpen.Size = new Size(98, 65);
+            UI_BtnWorkOpen.TabIndex = 2;
+            UI_BtnWorkOpen.Text = "開く";
+            UI_BtnWorkOpen.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // UI_BtnWorkDelete
             // 
-            button7.Location = new Point(659, 12);
-            button7.Name = "button7";
-            button7.Size = new Size(98, 65);
-            button7.TabIndex = 7;
-            button7.Text = "合成音声";
-            button7.UseVisualStyleBackColor = true;
+            UI_BtnWorkDelete.BackColor = Color.FromArgb(255, 192, 192);
+            UI_BtnWorkDelete.Location = new Point(220, 12);
+            UI_BtnWorkDelete.Name = "UI_BtnWorkDelete";
+            UI_BtnWorkDelete.Size = new Size(98, 65);
+            UI_BtnWorkDelete.TabIndex = 3;
+            UI_BtnWorkDelete.Text = "削除";
+            UI_BtnWorkDelete.UseVisualStyleBackColor = false;
             // 
-            // button8
+            // UI_BtnKindsImage
             // 
-            button8.Location = new Point(763, 12);
-            button8.Name = "button8";
-            button8.Size = new Size(98, 65);
-            button8.TabIndex = 8;
-            button8.Text = "その他";
-            button8.UseVisualStyleBackColor = true;
+            UI_BtnKindsImage.BackColor = Color.FromArgb(192, 192, 255);
+            UI_BtnKindsImage.Location = new Point(347, 12);
+            UI_BtnKindsImage.Name = "UI_BtnKindsImage";
+            UI_BtnKindsImage.Size = new Size(98, 65);
+            UI_BtnKindsImage.TabIndex = 4;
+            UI_BtnKindsImage.Text = "画像";
+            UI_BtnKindsImage.UseVisualStyleBackColor = false;
+            UI_BtnKindsImage.Click += UI_BtnKindsImage_Click;
             // 
-            // button9
+            // UI_BtnKindsSound
             // 
-            button9.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button9.BackColor = Color.FromArgb(192, 192, 255);
-            button9.Location = new Point(12, 858);
-            button9.Name = "button9";
-            button9.Size = new Size(202, 74);
-            button9.TabIndex = 9;
-            button9.Text = "使用素材";
-            button9.UseVisualStyleBackColor = false;
+            UI_BtnKindsSound.Location = new Point(451, 12);
+            UI_BtnKindsSound.Name = "UI_BtnKindsSound";
+            UI_BtnKindsSound.Size = new Size(98, 65);
+            UI_BtnKindsSound.TabIndex = 5;
+            UI_BtnKindsSound.Text = "音声";
+            UI_BtnKindsSound.UseVisualStyleBackColor = true;
+            UI_BtnKindsSound.Click += UI_BtnKindsSound_Click;
             // 
-            // button10
+            // UI_BtnKindsFont
             // 
-            button10.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button10.Location = new Point(347, 863);
-            button10.Name = "button10";
-            button10.Size = new Size(202, 74);
-            button10.TabIndex = 10;
-            button10.Text = "選択素材を使用";
-            button10.UseVisualStyleBackColor = true;
+            UI_BtnKindsFont.Location = new Point(555, 12);
+            UI_BtnKindsFont.Name = "UI_BtnKindsFont";
+            UI_BtnKindsFont.Size = new Size(98, 65);
+            UI_BtnKindsFont.TabIndex = 6;
+            UI_BtnKindsFont.Text = "フォント";
+            UI_BtnKindsFont.UseVisualStyleBackColor = true;
+            UI_BtnKindsFont.Click += UI_BtnKindsFont_Click;
             // 
-            // button11
+            // UI_BtnKindsSpeech
             // 
-            button11.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button11.BackColor = Color.FromArgb(192, 255, 192);
-            button11.Location = new Point(555, 863);
-            button11.Name = "button11";
-            button11.Size = new Size(202, 74);
-            button11.TabIndex = 11;
-            button11.Text = "常に使用";
-            button11.UseVisualStyleBackColor = false;
+            UI_BtnKindsSpeech.Location = new Point(659, 12);
+            UI_BtnKindsSpeech.Name = "UI_BtnKindsSpeech";
+            UI_BtnKindsSpeech.Size = new Size(98, 65);
+            UI_BtnKindsSpeech.TabIndex = 7;
+            UI_BtnKindsSpeech.Text = "合成音声";
+            UI_BtnKindsSpeech.UseVisualStyleBackColor = true;
+            UI_BtnKindsSpeech.Click += UI_BtnKindsSpeech_Click;
             // 
-            // button12
+            // UI_BtnKindsOther
             // 
-            button12.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button12.BackColor = Color.FromArgb(255, 192, 192);
-            button12.Location = new Point(1466, 882);
-            button12.Name = "button12";
-            button12.Size = new Size(100, 50);
-            button12.TabIndex = 12;
-            button12.Text = "削除";
-            button12.UseVisualStyleBackColor = false;
+            UI_BtnKindsOther.Location = new Point(763, 12);
+            UI_BtnKindsOther.Name = "UI_BtnKindsOther";
+            UI_BtnKindsOther.Size = new Size(98, 65);
+            UI_BtnKindsOther.TabIndex = 8;
+            UI_BtnKindsOther.Text = "その他";
+            UI_BtnKindsOther.UseVisualStyleBackColor = true;
+            UI_BtnKindsOther.Click += UI_BtnKindsOther_Click;
             // 
-            // button13
+            // UI_BtnUsed
             // 
-            button13.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button13.Location = new Point(1360, 882);
-            button13.Name = "button13";
-            button13.Size = new Size(100, 50);
-            button13.TabIndex = 13;
-            button13.Text = "更新";
-            button13.UseVisualStyleBackColor = true;
+            UI_BtnUsed.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            UI_BtnUsed.BackColor = Color.FromArgb(192, 192, 255);
+            UI_BtnUsed.Location = new Point(12, 858);
+            UI_BtnUsed.Name = "UI_BtnUsed";
+            UI_BtnUsed.Size = new Size(202, 74);
+            UI_BtnUsed.TabIndex = 9;
+            UI_BtnUsed.Text = "使用素材";
+            UI_BtnUsed.UseVisualStyleBackColor = false;
             // 
-            // button14
+            // UI_BtnAssetUse
             // 
-            button14.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button14.Location = new Point(1254, 882);
-            button14.Name = "button14";
-            button14.Size = new Size(100, 50);
-            button14.TabIndex = 14;
-            button14.Text = "登録";
-            button14.UseVisualStyleBackColor = true;
+            UI_BtnAssetUse.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            UI_BtnAssetUse.Location = new Point(347, 863);
+            UI_BtnAssetUse.Name = "UI_BtnAssetUse";
+            UI_BtnAssetUse.Size = new Size(202, 74);
+            UI_BtnAssetUse.TabIndex = 10;
+            UI_BtnAssetUse.Text = "選択素材を使用";
+            UI_BtnAssetUse.UseVisualStyleBackColor = true;
+            // 
+            // UI_BtnAssetAlwaysUse
+            // 
+            UI_BtnAssetAlwaysUse.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            UI_BtnAssetAlwaysUse.BackColor = Color.FromArgb(192, 255, 192);
+            UI_BtnAssetAlwaysUse.Location = new Point(555, 863);
+            UI_BtnAssetAlwaysUse.Name = "UI_BtnAssetAlwaysUse";
+            UI_BtnAssetAlwaysUse.Size = new Size(202, 74);
+            UI_BtnAssetAlwaysUse.TabIndex = 11;
+            UI_BtnAssetAlwaysUse.Text = "常に使用";
+            UI_BtnAssetAlwaysUse.UseVisualStyleBackColor = false;
+            // 
+            // UI_BtnTagDelete
+            // 
+            UI_BtnTagDelete.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            UI_BtnTagDelete.BackColor = Color.FromArgb(255, 192, 192);
+            UI_BtnTagDelete.Location = new Point(1466, 882);
+            UI_BtnTagDelete.Name = "UI_BtnTagDelete";
+            UI_BtnTagDelete.Size = new Size(100, 50);
+            UI_BtnTagDelete.TabIndex = 12;
+            UI_BtnTagDelete.Text = "削除";
+            UI_BtnTagDelete.UseVisualStyleBackColor = false;
+            // 
+            // UI_BtnTagUpdate
+            // 
+            UI_BtnTagUpdate.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            UI_BtnTagUpdate.Location = new Point(1360, 882);
+            UI_BtnTagUpdate.Name = "UI_BtnTagUpdate";
+            UI_BtnTagUpdate.Size = new Size(100, 50);
+            UI_BtnTagUpdate.TabIndex = 13;
+            UI_BtnTagUpdate.Text = "更新";
+            UI_BtnTagUpdate.UseVisualStyleBackColor = true;
+            // 
+            // UI_BtnTagInsert
+            // 
+            UI_BtnTagInsert.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            UI_BtnTagInsert.Location = new Point(1254, 882);
+            UI_BtnTagInsert.Name = "UI_BtnTagInsert";
+            UI_BtnTagInsert.Size = new Size(100, 50);
+            UI_BtnTagInsert.TabIndex = 14;
+            UI_BtnTagInsert.Text = "登録";
+            UI_BtnTagInsert.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -242,9 +289,9 @@
             // 
             button18.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             button18.BackColor = Color.FromArgb(255, 255, 192);
-            button18.Location = new Point(957, 903);
+            button18.Location = new Point(957, 863);
             button18.Name = "button18";
-            button18.Size = new Size(98, 34);
+            button18.Size = new Size(98, 74);
             button18.TabIndex = 20;
             button18.Text = "フォルダ";
             button18.UseVisualStyleBackColor = false;
@@ -292,7 +339,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(12, 104);
+            label8.Location = new Point(12, 157);
             label8.Name = "label8";
             label8.Size = new Size(66, 25);
             label8.TabIndex = 26;
@@ -301,42 +348,42 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(12, 197);
+            label10.Location = new Point(12, 250);
             label10.Name = "label10";
             label10.Size = new Size(40, 25);
             label10.TabIndex = 28;
             label10.Text = "タグ";
             // 
-            // textBox1
+            // UI_TextTag
             // 
-            textBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            textBox1.Location = new Point(1187, 749);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(379, 31);
-            textBox1.TabIndex = 29;
+            UI_TextTag.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            UI_TextTag.Location = new Point(1187, 749);
+            UI_TextTag.Name = "UI_TextTag";
+            UI_TextTag.ReadOnly = true;
+            UI_TextTag.Size = new Size(379, 31);
+            UI_TextTag.TabIndex = 29;
             // 
-            // textBox2
+            // UI_TextMemo
             // 
-            textBox2.AcceptsReturn = true;
-            textBox2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            textBox2.Location = new Point(1187, 590);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.ReadOnly = true;
-            textBox2.ScrollBars = ScrollBars.Both;
-            textBox2.Size = new Size(379, 153);
-            textBox2.TabIndex = 30;
-            textBox2.WordWrap = false;
+            UI_TextMemo.AcceptsReturn = true;
+            UI_TextMemo.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            UI_TextMemo.Location = new Point(1187, 590);
+            UI_TextMemo.Multiline = true;
+            UI_TextMemo.Name = "UI_TextMemo";
+            UI_TextMemo.ReadOnly = true;
+            UI_TextMemo.ScrollBars = ScrollBars.Both;
+            UI_TextMemo.Size = new Size(379, 153);
+            UI_TextMemo.TabIndex = 30;
+            UI_TextMemo.WordWrap = false;
             // 
-            // textBox5
+            // UI_TextParent
             // 
-            textBox5.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            textBox5.Location = new Point(1187, 235);
-            textBox5.Name = "textBox5";
-            textBox5.ReadOnly = true;
-            textBox5.Size = new Size(379, 31);
-            textBox5.TabIndex = 33;
+            UI_TextParent.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            UI_TextParent.Location = new Point(1187, 235);
+            UI_TextParent.Name = "UI_TextParent";
+            UI_TextParent.ReadOnly = true;
+            UI_TextParent.Size = new Size(379, 31);
+            UI_TextParent.TabIndex = 33;
             // 
             // label3
             // 
@@ -350,7 +397,7 @@
             // 
             // textBox6
             // 
-            textBox6.Location = new Point(12, 132);
+            textBox6.Location = new Point(12, 185);
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(306, 31);
             textBox6.TabIndex = 35;
@@ -358,54 +405,54 @@
             // checkedListBox1
             // 
             checkedListBox1.FormattingEnabled = true;
-            checkedListBox1.Location = new Point(12, 225);
+            checkedListBox1.Location = new Point(12, 278);
             checkedListBox1.Name = "checkedListBox1";
             checkedListBox1.Size = new Size(306, 200);
             checkedListBox1.TabIndex = 36;
             // 
-            // button19
+            // UI_BtnSearch
             // 
-            button19.Location = new Point(12, 431);
-            button19.Name = "button19";
-            button19.Size = new Size(98, 50);
-            button19.TabIndex = 37;
-            button19.Text = "検索";
-            button19.UseVisualStyleBackColor = true;
+            UI_BtnSearch.Location = new Point(12, 484);
+            UI_BtnSearch.Name = "UI_BtnSearch";
+            UI_BtnSearch.Size = new Size(98, 50);
+            UI_BtnSearch.TabIndex = 37;
+            UI_BtnSearch.Text = "検索";
+            UI_BtnSearch.UseVisualStyleBackColor = true;
             // 
-            // button20
+            // UI_BtnReset
             // 
-            button20.Location = new Point(116, 431);
-            button20.Name = "button20";
-            button20.Size = new Size(98, 50);
-            button20.TabIndex = 38;
-            button20.Text = "リセット";
-            button20.UseVisualStyleBackColor = true;
+            UI_BtnReset.Location = new Point(116, 484);
+            UI_BtnReset.Name = "UI_BtnReset";
+            UI_BtnReset.Size = new Size(98, 50);
+            UI_BtnReset.TabIndex = 38;
+            UI_BtnReset.Text = "リセット";
+            UI_BtnReset.UseVisualStyleBackColor = true;
             // 
-            // textBox3
+            // UI_TextTerms
             // 
-            textBox3.AcceptsReturn = true;
-            textBox3.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            textBox3.Location = new Point(1187, 431);
-            textBox3.Multiline = true;
-            textBox3.Name = "textBox3";
-            textBox3.ReadOnly = true;
-            textBox3.ScrollBars = ScrollBars.Both;
-            textBox3.Size = new Size(379, 153);
-            textBox3.TabIndex = 39;
-            textBox3.WordWrap = false;
+            UI_TextTerms.AcceptsReturn = true;
+            UI_TextTerms.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            UI_TextTerms.Location = new Point(1187, 431);
+            UI_TextTerms.Multiline = true;
+            UI_TextTerms.Name = "UI_TextTerms";
+            UI_TextTerms.ReadOnly = true;
+            UI_TextTerms.ScrollBars = ScrollBars.Both;
+            UI_TextTerms.Size = new Size(379, 153);
+            UI_TextTerms.TabIndex = 39;
+            UI_TextTerms.WordWrap = false;
             // 
-            // textBox4
+            // UI_TextCommonTerms
             // 
-            textBox4.AcceptsReturn = true;
-            textBox4.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            textBox4.Location = new Point(1187, 272);
-            textBox4.Multiline = true;
-            textBox4.Name = "textBox4";
-            textBox4.ReadOnly = true;
-            textBox4.ScrollBars = ScrollBars.Both;
-            textBox4.Size = new Size(379, 153);
-            textBox4.TabIndex = 40;
-            textBox4.WordWrap = false;
+            UI_TextCommonTerms.AcceptsReturn = true;
+            UI_TextCommonTerms.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            UI_TextCommonTerms.Location = new Point(1187, 272);
+            UI_TextCommonTerms.Multiline = true;
+            UI_TextCommonTerms.Name = "UI_TextCommonTerms";
+            UI_TextCommonTerms.ReadOnly = true;
+            UI_TextCommonTerms.ScrollBars = ScrollBars.Both;
+            UI_TextCommonTerms.Size = new Size(379, 153);
+            UI_TextCommonTerms.TabIndex = 40;
+            UI_TextCommonTerms.WordWrap = false;
             // 
             // pictureBox1
             // 
@@ -420,43 +467,44 @@
             // 
             checkBox1.AutoSize = true;
             checkBox1.CheckAlign = ContentAlignment.MiddleRight;
-            checkBox1.Location = new Point(12, 169);
+            checkBox1.Location = new Point(12, 222);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(115, 29);
             checkBox1.TabIndex = 42;
             checkBox1.Text = "ブックマーク";
             checkBox1.UseVisualStyleBackColor = true;
             // 
-            // button15
+            // UI_BtnAssetInsert
             // 
-            button15.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button15.Location = new Point(1254, 826);
-            button15.Name = "button15";
-            button15.Size = new Size(100, 50);
-            button15.TabIndex = 45;
-            button15.Text = "登録";
-            button15.UseVisualStyleBackColor = true;
+            UI_BtnAssetInsert.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            UI_BtnAssetInsert.Location = new Point(1254, 826);
+            UI_BtnAssetInsert.Name = "UI_BtnAssetInsert";
+            UI_BtnAssetInsert.Size = new Size(100, 50);
+            UI_BtnAssetInsert.TabIndex = 45;
+            UI_BtnAssetInsert.Text = "登録";
+            UI_BtnAssetInsert.UseVisualStyleBackColor = true;
+            UI_BtnAssetInsert.Click += UI_BtnAssetInsert_Click;
             // 
-            // button16
+            // UI_BtnAssetUpdate
             // 
-            button16.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button16.Location = new Point(1360, 826);
-            button16.Name = "button16";
-            button16.Size = new Size(100, 50);
-            button16.TabIndex = 44;
-            button16.Text = "更新";
-            button16.UseVisualStyleBackColor = true;
+            UI_BtnAssetUpdate.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            UI_BtnAssetUpdate.Location = new Point(1360, 826);
+            UI_BtnAssetUpdate.Name = "UI_BtnAssetUpdate";
+            UI_BtnAssetUpdate.Size = new Size(100, 50);
+            UI_BtnAssetUpdate.TabIndex = 44;
+            UI_BtnAssetUpdate.Text = "更新";
+            UI_BtnAssetUpdate.UseVisualStyleBackColor = true;
             // 
-            // button17
+            // UI_BtnAssetDelete
             // 
-            button17.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button17.BackColor = Color.FromArgb(255, 192, 192);
-            button17.Location = new Point(1466, 826);
-            button17.Name = "button17";
-            button17.Size = new Size(100, 50);
-            button17.TabIndex = 43;
-            button17.Text = "削除";
-            button17.UseVisualStyleBackColor = false;
+            UI_BtnAssetDelete.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            UI_BtnAssetDelete.BackColor = Color.FromArgb(255, 192, 192);
+            UI_BtnAssetDelete.Location = new Point(1466, 826);
+            UI_BtnAssetDelete.Name = "UI_BtnAssetDelete";
+            UI_BtnAssetDelete.Size = new Size(100, 50);
+            UI_BtnAssetDelete.TabIndex = 43;
+            UI_BtnAssetDelete.Text = "削除";
+            UI_BtnAssetDelete.UseVisualStyleBackColor = false;
             // 
             // FormMain
             // 
@@ -464,21 +512,21 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             ClientSize = new Size(1578, 944);
-            Controls.Add(button15);
-            Controls.Add(button16);
-            Controls.Add(button17);
+            Controls.Add(UI_BtnAssetInsert);
+            Controls.Add(UI_BtnAssetUpdate);
+            Controls.Add(UI_BtnAssetDelete);
             Controls.Add(checkBox1);
             Controls.Add(pictureBox1);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(button20);
-            Controls.Add(button19);
+            Controls.Add(UI_TextCommonTerms);
+            Controls.Add(UI_TextTerms);
+            Controls.Add(UI_BtnReset);
+            Controls.Add(UI_BtnSearch);
             Controls.Add(checkedListBox1);
             Controls.Add(textBox6);
             Controls.Add(label3);
-            Controls.Add(textBox5);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(UI_TextParent);
+            Controls.Add(UI_TextMemo);
+            Controls.Add(UI_TextTag);
             Controls.Add(label10);
             Controls.Add(label8);
             Controls.Add(label7);
@@ -488,25 +536,26 @@
             Controls.Add(button18);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(button14);
-            Controls.Add(button13);
-            Controls.Add(button12);
-            Controls.Add(button11);
-            Controls.Add(button10);
-            Controls.Add(button9);
-            Controls.Add(button8);
-            Controls.Add(button7);
-            Controls.Add(button6);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(dataGridView1);
-            Controls.Add(button1);
+            Controls.Add(UI_BtnTagInsert);
+            Controls.Add(UI_BtnTagUpdate);
+            Controls.Add(UI_BtnTagDelete);
+            Controls.Add(UI_BtnAssetAlwaysUse);
+            Controls.Add(UI_BtnAssetUse);
+            Controls.Add(UI_BtnUsed);
+            Controls.Add(UI_BtnKindsOther);
+            Controls.Add(UI_BtnKindsSpeech);
+            Controls.Add(UI_BtnKindsFont);
+            Controls.Add(UI_BtnKindsSound);
+            Controls.Add(UI_BtnKindsImage);
+            Controls.Add(UI_BtnWorkDelete);
+            Controls.Add(UI_BtnWorkOpen);
+            Controls.Add(UI_DataGridView);
+            Controls.Add(UI_BtnWorkCreate);
             MinimumSize = new Size(1600, 1000);
             Name = "FormMain";
             Text = "素材規約箱";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Activated += FormMain_Actibated;
+            ((System.ComponentModel.ISupportInitialize)UI_DataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -514,21 +563,21 @@
 
         #endregion
 
-        private Button button1;
-        private DataGridView dataGridView1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
-        private Button button6;
-        private Button button7;
-        private Button button8;
-        private Button button9;
-        private Button button10;
-        private Button button11;
-        private Button button12;
-        private Button button13;
-        private Button button14;
+        private Button UI_BtnWorkCreate;
+        private DataGridView UI_DataGridView;
+        private Button UI_BtnWorkOpen;
+        private Button UI_BtnWorkDelete;
+        private Button UI_BtnKindsImage;
+        private Button UI_BtnKindsSound;
+        private Button UI_BtnKindsFont;
+        private Button UI_BtnKindsSpeech;
+        private Button UI_BtnKindsOther;
+        private Button UI_BtnUsed;
+        private Button UI_BtnAssetUse;
+        private Button UI_BtnAssetAlwaysUse;
+        private Button UI_BtnTagDelete;
+        private Button UI_BtnTagUpdate;
+        private Button UI_BtnTagInsert;
         private Label label1;
         private Label label2;
         private Button button18;
@@ -538,20 +587,24 @@
         private Label label7;
         private Label label8;
         private Label label10;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox5;
+        private TextBox UI_TextTag;
+        private TextBox UI_TextMemo;
+        private TextBox UI_TextParent;
         private Label label3;
         private TextBox textBox6;
         private CheckedListBox checkedListBox1;
-        private Button button19;
-        private Button button20;
-        private TextBox textBox3;
-        private TextBox textBox4;
+        private Button UI_BtnSearch;
+        private Button UI_BtnReset;
+        private TextBox UI_TextTerms;
+        private TextBox UI_TextCommonTerms;
         private PictureBox pictureBox1;
         private CheckBox checkBox1;
-        private Button button15;
-        private Button button16;
-        private Button button17;
+        private Button UI_BtnAssetInsert;
+        private Button UI_BtnAssetUpdate;
+        private Button UI_BtnAssetDelete;
+        private DataGridViewTextBoxColumn id;
+        private DataGridViewTextBoxColumn name;
+        private DataGridViewTextBoxColumn holderName;
+        private DataGridViewTextBoxColumn bookmark;
     }
 }
