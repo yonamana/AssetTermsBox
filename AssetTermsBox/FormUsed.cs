@@ -10,7 +10,7 @@ namespace AssetTermsBox
 {
     public partial class FormUsed : Form
     {
-        private string myParentId = "kariNumber";
+        private string myParentId = "nc510840";
 
         public FormUsed()
         {

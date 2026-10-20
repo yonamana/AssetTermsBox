@@ -527,7 +527,7 @@
             label9.Name = "label9";
             label9.Size = new Size(78, 25);
             label9.TabIndex = 47;
-            label9.Text = "Ver.0.1.0";
+            label9.Text = "Ver.0.1.1";
             // 
             // FormMain
             // 
