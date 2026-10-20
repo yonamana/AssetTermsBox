@@ -117,8 +117,8 @@ namespace AssetTermsBox
 
         private void FormMain_Actibated(object sender, EventArgs e)
         {
-            //Display();
-            //SelectRow();
+            Display();
+            SelectRow();
 
             ReadyOk();
         }
