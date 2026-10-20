@@ -28,26 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox4 = new TextBox();
             label6 = new Label();
             label1 = new Label();
-            textBox1 = new TextBox();
+            UI_TextParent = new TextBox();
             button1 = new Button();
             button2 = new Button();
-            button3 = new Button();
+            UI_BtnClose = new Button();
+            UI_TextTerms = new TextBox();
             SuspendLayout();
-            // 
-            // textBox4
-            // 
-            textBox4.AcceptsReturn = true;
-            textBox4.Location = new Point(12, 37);
-            textBox4.Multiline = true;
-            textBox4.Name = "textBox4";
-            textBox4.ReadOnly = true;
-            textBox4.ScrollBars = ScrollBars.Both;
-            textBox4.Size = new Size(548, 312);
-            textBox4.TabIndex = 41;
-            textBox4.WordWrap = false;
             // 
             // label6
             // 
@@ -65,15 +53,15 @@
             label1.Name = "label1";
             label1.Size = new Size(84, 25);
             label1.TabIndex = 44;
-            label1.Text = "権利情報";
+            label1.Text = "親登録ID";
             // 
-            // textBox1
+            // UI_TextParent
             // 
-            textBox1.Location = new Point(12, 380);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(548, 31);
-            textBox1.TabIndex = 45;
+            UI_TextParent.Location = new Point(12, 380);
+            UI_TextParent.Name = "UI_TextParent";
+            UI_TextParent.ReadOnly = true;
+            UI_TextParent.Size = new Size(548, 31);
+            UI_TextParent.TabIndex = 45;
             // 
             // button1
             // 
@@ -81,7 +69,7 @@
             button1.Name = "button1";
             button1.Size = new Size(98, 60);
             button1.TabIndex = 46;
-            button1.Text = "コピー";
+            button1.Text = "未実装";
             button1.UseVisualStyleBackColor = true;
             // 
             // button2
@@ -90,32 +78,47 @@
             button2.Name = "button2";
             button2.Size = new Size(98, 56);
             button2.TabIndex = 47;
-            button2.Text = "コピー";
+            button2.Text = "未実装";
             button2.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // UI_BtnClose
             // 
-            button3.Location = new Point(566, 442);
-            button3.Name = "button3";
-            button3.Size = new Size(98, 56);
-            button3.TabIndex = 48;
-            button3.Text = "閉じる";
-            button3.UseVisualStyleBackColor = true;
+            UI_BtnClose.Location = new Point(566, 442);
+            UI_BtnClose.Name = "UI_BtnClose";
+            UI_BtnClose.Size = new Size(98, 56);
+            UI_BtnClose.TabIndex = 48;
+            UI_BtnClose.Text = "閉じる";
+            UI_BtnClose.UseVisualStyleBackColor = true;
+            UI_BtnClose.Click += UI_BtnClose_Click;
+            // 
+            // UI_TextTerms
+            // 
+            UI_TextTerms.AcceptsReturn = true;
+            UI_TextTerms.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            UI_TextTerms.Location = new Point(12, 37);
+            UI_TextTerms.Multiline = true;
+            UI_TextTerms.Name = "UI_TextTerms";
+            UI_TextTerms.ReadOnly = true;
+            UI_TextTerms.ScrollBars = ScrollBars.Both;
+            UI_TextTerms.Size = new Size(548, 312);
+            UI_TextTerms.TabIndex = 49;
+            UI_TextTerms.WordWrap = false;
             // 
             // FormUsed
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(677, 512);
-            Controls.Add(button3);
+            Controls.Add(UI_TextTerms);
+            Controls.Add(UI_BtnClose);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(textBox1);
+            Controls.Add(UI_TextParent);
             Controls.Add(label1);
             Controls.Add(label6);
-            Controls.Add(textBox4);
             Name = "FormUsed";
             Text = "使用素材";
+            FormClosed += FormClose;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -125,9 +128,10 @@
         private TextBox textBox4;
         private Label label6;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox UI_TextParent;
         private Button button1;
         private Button button2;
-        private Button button3;
+        private Button UI_BtnClose;
+        private TextBox UI_TextTerms;
     }
 }

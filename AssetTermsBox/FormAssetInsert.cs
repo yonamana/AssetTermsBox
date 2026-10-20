@@ -40,7 +40,7 @@ namespace AssetTermsBox
             {
                 if (UI_TextFile.Text.Length == 0)
                 {
-                    C_MessageBox.Error("");
+                    C_MessageBox.Error("ファイルを選択してください。");
                     return false;
                 }
 
@@ -48,47 +48,47 @@ namespace AssetTermsBox
             // 素材名
             if (UI_TextAssetName.Text.Length == 0)
             {
-                C_MessageBox.Error("");
+                C_MessageBox.Error("素材名を入力してください。");
                 return false;
             }
             if (UI_TextAssetName.Text.Length > 100)
             {
-                C_MessageBox.Error("");
+                C_MessageBox.Error("素材名は100文字以内にしてください。");
                 return false;
             }
             // 権利元名
             if (UI_ComboHolderName.Text.Length == 0)
             {
-                C_MessageBox.Error("");
+                C_MessageBox.Error("権利元名を入力してください。");
                 return false;
             }
             if (UI_ComboHolderName.Text.Length > 50)
             {
-                C_MessageBox.Error("");
+                C_MessageBox.Error("権利元名は50文字以内にしてください。");
                 return false;
             }
             // 共通権利情報
             if (UI_TextCommonTerms.Text.Length > 1000)
             {
-                C_MessageBox.Error("");
+                C_MessageBox.Error("共通権利情報は1000文字以内にしてください。");
                 return false;
             }
             // 権利情報
             if (UI_TextTerms.Text.Length > 1000)
             {
-                C_MessageBox.Error("");
+                C_MessageBox.Error("権利情報は1000文字以内にしてください。");
                 return false;
             }
             // 親登録ID
             if (UI_TextParent.Text.Length > 20)
             {
-                C_MessageBox.Error("");
+                C_MessageBox.Error("親登録IDは20文字以内にしてください。");
                 return false;
             }
             // メモ
             if (UI_TextMemo.Text.Length > 1000)
             {
-                C_MessageBox.Error("");
+                C_MessageBox.Error("メモは1000文字以内にしてください。");
                 return false;
             }
 

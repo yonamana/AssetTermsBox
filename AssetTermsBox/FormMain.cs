@@ -15,6 +15,10 @@ namespace AssetTermsBox
         {
             InitializeComponent();
 
+            UI_BtnAssetUse.Enabled = false;
+            UI_BtnAssetAlwaysUse.Enabled = false;
+            UI_BtnUsed.Enabled = false;
+
             Display();
         }
 
@@ -22,10 +26,27 @@ namespace AssetTermsBox
         {
             C_ManageForm.StartWorkStart();
         }
+        private void UI_BtnWorkOpen_Click(object sender, EventArgs e)
+        {
+            string GetFileName = C_Dialog.OpenWorkDataFile();
+            if (GetFileName != "")
+            {
+                C_ManageWorkDataFile.SetWorkDataFilePath(GetFileName);
+                C_ManageWorkDataFile.LoadFile();
+
+                SelectRow();
+                ReadyOk();
+            }
+        }
 
         private void UI_BtnAssetInsert_Click(object sender, EventArgs e)
         {
             C_ManageForm.StartAssetInsert();
+        }
+
+        private void UI_BtnUsed_Click(object sender, EventArgs e)
+        {
+            C_ManageForm.StartFormUsed();
         }
 
         private void UI_BtnKindsImage_Click(object sender, EventArgs e)
@@ -93,18 +114,13 @@ namespace AssetTermsBox
             SelectFirstRow();
         }
 
-        private void UI_DataGridView_Click(object sender, EventArgs e)
-        {
-            SelectRow();
-        }
-
 
         private void FormMain_Actibated(object sender, EventArgs e)
         {
-            Display();
-            SelectRow();
+            //Display();
+            //SelectRow();
 
-            UI_TextWorkFile.Text = C_ManageWorkDataFile.GetWorkDataFilePath();
+            ReadyOk();
         }
 
 
@@ -266,26 +282,38 @@ namespace AssetTermsBox
 
         private void UI_DataGridView_MouseDown(object sender, MouseEventArgs e)
         {
+            // マウスの位置にあるセルを取得
+            var hitPos = UI_DataGridView.HitTest(e.X, e.Y);
+            if (UI_DataGridView.Rows.Count < hitPos.RowIndex || hitPos.RowIndex < 0)
+            {
+                return;
+            }
+            ////////////////////////////////////////////////////////////
+            // クリック時の処理
+            ////////////////////////////////////////////////////////////
+            UI_DataGridView.CurrentCell = UI_DataGridView.Rows[hitPos.RowIndex].Cells[0];
             SelectRow();
 
+
+            ////////////////////////////////////////////////////////////
+            // ドラッグ時の処理
+            ////////////////////////////////////////////////////////////
+            if (UI_BtnAssetUse.Enabled == false)
+            {
+                return;
+            }
             if (kindsValue == 3 || kindsValue == 4 || kindsValue == 5)
             {
                 return;
             }
 
-            // マウスの位置にあるセルを取得
-            var hitTest = UI_DataGridView.HitTest(e.X, e.Y);
+      
 
             // 左クリックが行われた場合
             if (e.Button == MouseButtons.Left)
             {
-                if (UI_DataGridView.Rows.Count < hitTest.RowIndex || hitTest.RowIndex < 0)
-                {
-                    return;
-                }
-
                 // ファイルを取得してファイルパスにする
-                string id = UI_DataGridView.Rows[hitTest.RowIndex]?.Cells["id"]?.Value?.ToString() ?? "";
+                string id = UI_DataGridView.Rows[hitPos.RowIndex]?.Cells["id"]?.Value?.ToString() ?? "";
                 if (id == "")
                 {
                     return;
@@ -320,8 +348,9 @@ namespace AssetTermsBox
                     UI_BtnAssetUse.BackColor = Color.FromArgb(192, 255, 192);
                 }
 
-                return;
             }
+
+            return;
         }
 
         private void UI_BtnAssetUse_Click(object sender, EventArgs e)
@@ -351,8 +380,20 @@ namespace AssetTermsBox
         }
 
 
+        private void ReadyOk()
+        {
+            UI_TextWorkFile.Text = C_ManageWorkDataFile.GetWorkDataFilePath();
+            if (UI_TextWorkFile.Text == "")
+            {
+                return;
+            }
 
+            UI_BtnAssetUse.Enabled = true;
+            UI_BtnAssetAlwaysUse.Enabled = true;
+            UI_BtnUsed.Enabled = true;
 
+            return;
+        }
 
 
     }

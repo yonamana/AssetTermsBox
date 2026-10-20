@@ -9,6 +9,11 @@ namespace AssetTermsBox
         static string workDataFilePath = "";
         static List<string> usedAssetList = new List<string>();
 
+        static public List<string> GetUsedAssetList()
+        {
+            return usedAssetList;
+        }
+
         static public void SetWorkDataFilePath(string filePath)
         {
             workDataFilePath = filePath;
@@ -27,7 +32,7 @@ namespace AssetTermsBox
                 // ある
                 return true;
             }
-
+            // ない
             return false;
         }
 

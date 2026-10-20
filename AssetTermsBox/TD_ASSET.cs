@@ -72,6 +72,52 @@ namespace AssetTermsBox
         }
 
 
+        static public Dictionary<int, Dictionary<string, string>> SelectUsedData(List<string> idList)
+        {
+            C_OperateSql sql = new C_OperateSql();
+            string[] columns = { "id", "name", "holder_id", "parent", "terms", "bookmark", "kinds" };
+
+            string where = "";
+            for (int cnt = 0; cnt < idList.Count(); cnt++)
+            {
+                if (cnt > 0)
+                {
+                    where += " OR ";
+                }
+                where += "id = " + idList[cnt];
+            }
+
+            Dictionary<int, Dictionary<string, string>> result = sql.Select(TABLE_NAME, columns, where);
+            return result;
+        }
+
+
+        static public string[] SelectUsedHolderId(List<string> idList)
+        {
+            C_OperateSql sql = new C_OperateSql();
+            string[] columns = { "DISTINCT holder_id" };
+
+            string where = "";
+            for (int cnt = 0; cnt < idList.Count(); cnt++)
+            {
+                if (cnt > 0)
+                {
+                    where += " OR ";
+                }
+                where += "id = " + idList[cnt];
+            }
+
+            Dictionary<int, Dictionary<string, string>> result = sql.Select(TABLE_NAME, columns, where);
+
+            string[] holderIdList = new string[result.Count];
+            for (int count = 0; count < result.Count; count++)
+            {
+                Dictionary<string, string> data = result[count];
+                holderIdList[count] = data["holder_id"];
+            }
+
+            return holderIdList;
+        }
 
 
     }

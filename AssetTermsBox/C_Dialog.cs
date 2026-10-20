@@ -63,7 +63,7 @@ namespace AssetTermsBox
             ofd.Filter = "WAV、MP3ファイル(*.wav;*.mp3)|*.wav;*.mp3";
             ofd.Filter += "|All files (*.*)|*.*";
             //タイトルを設定する
-            ofd.Title = "画像の選択";
+            ofd.Title = "音声の選択";
             //ダイアログボックスを閉じる前に現在のディレクトリを復元するようにする
             ofd.RestoreDirectory = true;
 
@@ -72,6 +72,41 @@ namespace AssetTermsBox
                 string rootFolderPath = System.IO.Path.GetFullPath(relativePath);
                 ofd.InitialDirectory = rootFolderPath;
             }
+
+
+            //ダイアログを表示する
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                if (File.Exists(ofd.FileName) == false)
+                {
+                    C_MessageBox.Error("ファイルが存在しません。");
+                    ofd.Dispose();
+                    return "";
+                }
+
+                fileName = ofd.FileName;
+            }
+
+            ofd.Dispose();
+            return fileName;
+        }
+
+        static public string OpenWorkDataFile()
+        {
+            string fileName = "";
+
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            //[ファイルの種類]に表示される選択肢を指定する
+            ofd.Filter = "TXTファイル(*.txt)|*.txt";
+            ofd.Filter += "|All files (*.*)|*.*";
+            //タイトルを設定する
+            ofd.Title = "作業ファイルの選択";
+            //ダイアログボックスを閉じる前に現在のディレクトリを復元するようにする
+            ofd.RestoreDirectory = true;
+
+            string rootFolderPath = System.IO.Path.GetFullPath(C_CreatePath.WorkDataPath());
+            ofd.InitialDirectory = rootFolderPath;
 
 
             //ダイアログを表示する

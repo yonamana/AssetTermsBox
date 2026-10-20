@@ -8,6 +8,7 @@ namespace AssetTermsBox
     {
         static FormWorkStart m_formWorkStart = null;
         static FormAssetInsert m_formAssetInsert = null;
+        static FormUsed m_formUsed = null;
 
 
         static public void StartWorkStart()
@@ -43,7 +44,21 @@ namespace AssetTermsBox
             return;
         }
 
-
+        static public void StartFormUsed()
+        {
+            // フォーム表示
+            if (m_formUsed == null || m_formUsed.IsDisposed == true)
+            {
+                m_formUsed = new FormUsed();
+                m_formUsed.ShowDialog();
+            }
+            else
+            {
+                m_formUsed.WindowState = FormWindowState.Normal;
+                m_formUsed.Activate();
+            }
+            return;
+        }
 
 
     }

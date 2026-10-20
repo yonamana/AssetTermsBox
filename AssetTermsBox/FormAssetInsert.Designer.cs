@@ -232,7 +232,7 @@
             button2.Name = "button2";
             button2.Size = new Size(98, 65);
             button2.TabIndex = 49;
-            button2.Text = "タグ登録";
+            button2.Text = "未実装";
             button2.UseVisualStyleBackColor = true;
             // 
             // UI_BtnInsert

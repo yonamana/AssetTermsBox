@@ -1,7 +1,9 @@
 ﻿using SqlOperate;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Linq;
 
 namespace AssetTermsBox
 {
@@ -79,6 +81,25 @@ namespace AssetTermsBox
             string[] columns = { "terms" };
 
             string where = "name = N'" + name + "'";
+            Dictionary<int, Dictionary<string, string>> result = sql.Select(TABLE_NAME, columns, where);
+            return result;
+        }
+
+
+        static public Dictionary<int, Dictionary<string, string>> SelectTermsWhereId(string[] idList)
+        {
+            C_OperateSql sql = new C_OperateSql();
+            string[] columns = { "terms" };
+
+            string where = "";
+            for (int cnt = 0; cnt < idList.Count(); cnt++)
+            {
+                if (cnt > 0)
+                {
+                    where += " OR ";
+                }
+                where += "id = " + idList[cnt];
+            }
             Dictionary<int, Dictionary<string, string>> result = sql.Select(TABLE_NAME, columns, where);
             return result;
         }

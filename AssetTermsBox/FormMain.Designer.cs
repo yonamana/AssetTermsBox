@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             UI_BtnWorkCreate = new Button();
             UI_DataGridView = new DataGridView();
             id = new DataGridViewTextBoxColumn();
@@ -72,6 +73,7 @@
             UI_BtnAssetUpdate = new Button();
             UI_BtnAssetDelete = new Button();
             UI_TextWorkFile = new TextBox();
+            label9 = new Label();
             ((System.ComponentModel.ISupportInitialize)UI_DataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -99,7 +101,6 @@
             UI_DataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             UI_DataGridView.Size = new Size(708, 772);
             UI_DataGridView.TabIndex = 1;
-            UI_DataGridView.Click += UI_DataGridView_Click;
             UI_DataGridView.MouseDown += UI_DataGridView_MouseDown;
             // 
             // id
@@ -142,6 +143,7 @@
             UI_BtnWorkOpen.TabIndex = 2;
             UI_BtnWorkOpen.Text = "開く";
             UI_BtnWorkOpen.UseVisualStyleBackColor = true;
+            UI_BtnWorkOpen.Click += UI_BtnWorkOpen_Click;
             // 
             // UI_BtnWorkDelete
             // 
@@ -150,7 +152,7 @@
             UI_BtnWorkDelete.Name = "UI_BtnWorkDelete";
             UI_BtnWorkDelete.Size = new Size(98, 65);
             UI_BtnWorkDelete.TabIndex = 3;
-            UI_BtnWorkDelete.Text = "削除";
+            UI_BtnWorkDelete.Text = "未実装";
             UI_BtnWorkDelete.UseVisualStyleBackColor = false;
             // 
             // UI_BtnKindsImage
@@ -214,6 +216,7 @@
             UI_BtnUsed.TabIndex = 9;
             UI_BtnUsed.Text = "使用素材";
             UI_BtnUsed.UseVisualStyleBackColor = false;
+            UI_BtnUsed.Click += UI_BtnUsed_Click;
             // 
             // UI_BtnAssetUse
             // 
@@ -229,12 +232,12 @@
             // UI_BtnAssetAlwaysUse
             // 
             UI_BtnAssetAlwaysUse.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            UI_BtnAssetAlwaysUse.BackColor = Color.FromArgb(192, 255, 192);
+            UI_BtnAssetAlwaysUse.BackColor = Color.White;
             UI_BtnAssetAlwaysUse.Location = new Point(555, 863);
             UI_BtnAssetAlwaysUse.Name = "UI_BtnAssetAlwaysUse";
             UI_BtnAssetAlwaysUse.Size = new Size(202, 74);
             UI_BtnAssetAlwaysUse.TabIndex = 11;
-            UI_BtnAssetAlwaysUse.Text = "常に使用";
+            UI_BtnAssetAlwaysUse.Text = "未実装";
             UI_BtnAssetAlwaysUse.UseVisualStyleBackColor = false;
             // 
             // UI_BtnTagDelete
@@ -245,7 +248,7 @@
             UI_BtnTagDelete.Name = "UI_BtnTagDelete";
             UI_BtnTagDelete.Size = new Size(100, 50);
             UI_BtnTagDelete.TabIndex = 12;
-            UI_BtnTagDelete.Text = "削除";
+            UI_BtnTagDelete.Text = "未実装";
             UI_BtnTagDelete.UseVisualStyleBackColor = false;
             // 
             // UI_BtnTagUpdate
@@ -255,7 +258,7 @@
             UI_BtnTagUpdate.Name = "UI_BtnTagUpdate";
             UI_BtnTagUpdate.Size = new Size(100, 50);
             UI_BtnTagUpdate.TabIndex = 13;
-            UI_BtnTagUpdate.Text = "更新";
+            UI_BtnTagUpdate.Text = "未実装";
             UI_BtnTagUpdate.UseVisualStyleBackColor = true;
             // 
             // UI_BtnTagInsert
@@ -265,7 +268,7 @@
             UI_BtnTagInsert.Name = "UI_BtnTagInsert";
             UI_BtnTagInsert.Size = new Size(100, 50);
             UI_BtnTagInsert.TabIndex = 14;
-            UI_BtnTagInsert.Text = "登録";
+            UI_BtnTagInsert.Text = "未実装";
             UI_BtnTagInsert.UseVisualStyleBackColor = true;
             // 
             // label1
@@ -296,7 +299,7 @@
             button18.Name = "button18";
             button18.Size = new Size(98, 74);
             button18.TabIndex = 20;
-            button18.Text = "フォルダ";
+            button18.Text = "未実装";
             button18.UseVisualStyleBackColor = false;
             // 
             // label4
@@ -419,7 +422,7 @@
             UI_BtnSearch.Name = "UI_BtnSearch";
             UI_BtnSearch.Size = new Size(98, 50);
             UI_BtnSearch.TabIndex = 37;
-            UI_BtnSearch.Text = "検索";
+            UI_BtnSearch.Text = "未実装";
             UI_BtnSearch.UseVisualStyleBackColor = true;
             // 
             // UI_BtnReset
@@ -428,7 +431,7 @@
             UI_BtnReset.Name = "UI_BtnReset";
             UI_BtnReset.Size = new Size(98, 50);
             UI_BtnReset.TabIndex = 38;
-            UI_BtnReset.Text = "リセット";
+            UI_BtnReset.Text = "未実装";
             UI_BtnReset.UseVisualStyleBackColor = true;
             // 
             // UI_TextTerms
@@ -495,7 +498,7 @@
             UI_BtnAssetUpdate.Name = "UI_BtnAssetUpdate";
             UI_BtnAssetUpdate.Size = new Size(100, 50);
             UI_BtnAssetUpdate.TabIndex = 44;
-            UI_BtnAssetUpdate.Text = "更新";
+            UI_BtnAssetUpdate.Text = "未実装";
             UI_BtnAssetUpdate.UseVisualStyleBackColor = true;
             // 
             // UI_BtnAssetDelete
@@ -506,17 +509,25 @@
             UI_BtnAssetDelete.Name = "UI_BtnAssetDelete";
             UI_BtnAssetDelete.Size = new Size(100, 50);
             UI_BtnAssetDelete.TabIndex = 43;
-            UI_BtnAssetDelete.Text = "削除";
+            UI_BtnAssetDelete.Text = "未実装";
             UI_BtnAssetDelete.UseVisualStyleBackColor = false;
             // 
             // UI_TextWorkFile
             // 
-            UI_TextWorkFile.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             UI_TextWorkFile.Location = new Point(12, 83);
             UI_TextWorkFile.Name = "UI_TextWorkFile";
             UI_TextWorkFile.ReadOnly = true;
             UI_TextWorkFile.Size = new Size(306, 31);
             UI_TextWorkFile.TabIndex = 46;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(12, 827);
+            label9.Name = "label9";
+            label9.Size = new Size(78, 25);
+            label9.TabIndex = 47;
+            label9.Text = "Ver.0.1.0";
             // 
             // FormMain
             // 
@@ -524,6 +535,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             ClientSize = new Size(1578, 944);
+            Controls.Add(label9);
             Controls.Add(UI_TextWorkFile);
             Controls.Add(UI_BtnAssetInsert);
             Controls.Add(UI_BtnAssetUpdate);
@@ -564,6 +576,7 @@
             Controls.Add(UI_BtnWorkOpen);
             Controls.Add(UI_DataGridView);
             Controls.Add(UI_BtnWorkCreate);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(1600, 1000);
             Name = "FormMain";
             Text = "素材規約箱";
@@ -620,5 +633,6 @@
         private DataGridViewTextBoxColumn holderName;
         private DataGridViewTextBoxColumn bookmark;
         private TextBox UI_TextWorkFile;
+        private Label label9;
     }
 }
