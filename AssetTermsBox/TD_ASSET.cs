@@ -33,11 +33,26 @@ namespace AssetTermsBox
         }
 
 
-        static public void UpdateData()
+        static public void UpdateData(string assetId, string assetName, string holderId, string terms, string parent, string memo, bool bookmark, int kinds)
         {
             C_OperateSql sql = new C_OperateSql();
             string setStr = "";
-            string where = "";
+            setStr += "name = N'" + assetName + "',";
+            setStr += "holder_id = " + holderId + ",";
+            setStr += "parent = N'" + parent + "',";
+            setStr += "terms = N'" + terms + "',";
+            setStr += "memo = N'" + memo + "',";
+            setStr += "kinds = " + kinds + ",";
+            if (bookmark == true)
+            {
+                setStr += "bookmark = 1";
+            }
+            else
+            {
+                setStr += "bookmark = 0";
+            }
+
+            string where = "id = " + assetId;
 
             sql.Update(TABLE_NAME, setStr, where);
         }
@@ -54,7 +69,7 @@ namespace AssetTermsBox
         static public Dictionary<string, string> SelectDataOne(string id)
         {
             C_OperateSql sql = new C_OperateSql();
-            string[] columns = {"name", "holder_id", "parent", "terms", "memo" };
+            string[] columns = {"name", "holder_id", "parent", "terms", "memo", "bookmark", "kinds" };
 
             string where = "id = " + id;
             Dictionary<int, Dictionary<string, string>> result = sql.Select(TABLE_NAME, columns, where);

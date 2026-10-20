@@ -498,8 +498,9 @@
             UI_BtnAssetUpdate.Name = "UI_BtnAssetUpdate";
             UI_BtnAssetUpdate.Size = new Size(100, 50);
             UI_BtnAssetUpdate.TabIndex = 44;
-            UI_BtnAssetUpdate.Text = "未実装";
+            UI_BtnAssetUpdate.Text = "更新";
             UI_BtnAssetUpdate.UseVisualStyleBackColor = true;
+            UI_BtnAssetUpdate.Click += UI_BtnAssetUpdate_Click;
             // 
             // UI_BtnAssetDelete
             // 
@@ -527,7 +528,7 @@
             label9.Name = "label9";
             label9.Size = new Size(78, 25);
             label9.TabIndex = 47;
-            label9.Text = "Ver.0.1.1";
+            label9.Text = "Ver.0.2.0";
             // 
             // FormMain
             // 

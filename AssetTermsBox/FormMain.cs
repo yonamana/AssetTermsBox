@@ -44,6 +44,19 @@ namespace AssetTermsBox
             C_ManageForm.StartAssetInsert();
         }
 
+        private void UI_BtnAssetUpdate_Click(object sender, EventArgs e)
+        {
+            string assetId = UI_DataGridView.CurrentRow?.Cells["id"]?.Value?.ToString() ?? "";
+            if (assetId == "")
+            {
+                C_MessageBox.Error("素材を選択してください。");
+                return;
+            }
+
+            C_ManageForm.StartAssetUpdate(assetId);
+            return;
+        }
+
         private void UI_BtnUsed_Click(object sender, EventArgs e)
         {
             C_ManageForm.StartFormUsed();
@@ -302,12 +315,8 @@ namespace AssetTermsBox
             {
                 return;
             }
-            if (kindsValue == 3 || kindsValue == 4 || kindsValue == 5)
-            {
-                return;
-            }
 
-      
+
 
             // 左クリックが行われた場合
             if (e.Button == MouseButtons.Left)

@@ -8,6 +8,7 @@ namespace AssetTermsBox
     {
         static FormWorkStart m_formWorkStart = null;
         static FormAssetInsert m_formAssetInsert = null;
+        static FormAssetUpdate m_formAssetUpdate = null;
         static FormUsed m_formUsed = null;
 
 
@@ -40,6 +41,22 @@ namespace AssetTermsBox
             {
                 m_formAssetInsert.WindowState = FormWindowState.Normal;
                 m_formAssetInsert.Activate();
+            }
+            return;
+        }
+
+        static public void StartAssetUpdate(string assetId)
+        {
+            // フォーム表示
+            if (m_formAssetUpdate == null || m_formAssetUpdate.IsDisposed == true)
+            {
+                m_formAssetUpdate = new FormAssetUpdate(assetId);
+                m_formAssetUpdate.ShowDialog();
+            }
+            else
+            {
+                m_formAssetUpdate.WindowState = FormWindowState.Normal;
+                m_formAssetUpdate.Activate();
             }
             return;
         }
