@@ -28,26 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button3 = new Button();
-            textBox6 = new TextBox();
+            UI_BtnInsert = new Button();
+            UI_TextTag = new TextBox();
             label8 = new Label();
             SuspendLayout();
             // 
-            // button3
+            // UI_BtnInsert
             // 
-            button3.Location = new Point(268, 111);
-            button3.Name = "button3";
-            button3.Size = new Size(98, 56);
-            button3.TabIndex = 52;
-            button3.Text = "登録";
-            button3.UseVisualStyleBackColor = true;
+            UI_BtnInsert.Location = new Point(268, 111);
+            UI_BtnInsert.Name = "UI_BtnInsert";
+            UI_BtnInsert.Size = new Size(98, 56);
+            UI_BtnInsert.TabIndex = 52;
+            UI_BtnInsert.Text = "登録";
+            UI_BtnInsert.UseVisualStyleBackColor = true;
+            UI_BtnInsert.Click += UI_BtnInsert_Click;
             // 
-            // textBox6
+            // UI_TextTag
             // 
-            textBox6.Location = new Point(12, 37);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(354, 31);
-            textBox6.TabIndex = 51;
+            UI_TextTag.Location = new Point(12, 37);
+            UI_TextTag.Name = "UI_TextTag";
+            UI_TextTag.Size = new Size(354, 31);
+            UI_TextTag.TabIndex = 51;
             // 
             // label8
             // 
@@ -63,19 +64,20 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(378, 178);
-            Controls.Add(button3);
-            Controls.Add(textBox6);
+            Controls.Add(UI_BtnInsert);
+            Controls.Add(UI_TextTag);
             Controls.Add(label8);
             Name = "FormTagInsert";
             Text = "タグ：登録";
+            FormClosed += FormClose;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button button3;
-        private TextBox textBox6;
+        private Button UI_BtnInsert;
+        private TextBox UI_TextTag;
         private Label label8;
     }
 }

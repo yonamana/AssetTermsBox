@@ -1,8 +1,9 @@
+using SqlOperate;
+using System.Collections;
 using System.IO;
+using System.Security.Cryptography.Xml;
 using System.Windows;
 using System.Windows.Input;
-using System.Collections;
-using System.Security.Cryptography.Xml;
 using static System.Net.WebRequestMethods;
 
 namespace AssetTermsBox
@@ -19,12 +20,21 @@ namespace AssetTermsBox
             UI_BtnAssetAlwaysUse.Enabled = false;
             UI_BtnUsed.Enabled = false;
 
-            Display();
+            // ソートの初期値
+            DataGridViewColumn column = UI_DataGridView.Columns["id"];
+            UI_DataGridView.Sort(column, System.ComponentModel.ListSortDirection.Descending);
+
+            if (UI_DataGridView.RowCount > 0)
+            {
+                UI_DataGridView.CurrentCell = UI_DataGridView[0, 0];
+            }
+
+            Display(true);
         }
 
         private void UI_BtnWorkCreate_Click(object sender, EventArgs e)
         {
-            C_ManageForm.StartWorkStart();
+            C_ManageForm.StartWorkStart(this);
         }
         private void UI_BtnWorkOpen_Click(object sender, EventArgs e)
         {
@@ -41,7 +51,7 @@ namespace AssetTermsBox
 
         private void UI_BtnAssetInsert_Click(object sender, EventArgs e)
         {
-            C_ManageForm.StartAssetInsert();
+            C_ManageForm.StartAssetInsert(this);
         }
 
         private void UI_BtnAssetUpdate_Click(object sender, EventArgs e)
@@ -53,8 +63,18 @@ namespace AssetTermsBox
                 return;
             }
 
-            C_ManageForm.StartAssetUpdate(assetId);
+            C_ManageForm.StartAssetUpdate(this, assetId);
             return;
+        }
+
+        private void UI_BtnTagInsert_Click(object sender, EventArgs e)
+        {
+            C_ManageForm.StartFormTagInsert(this);
+        }
+
+        private void UI_BtnTagUpdate_Click(object sender, EventArgs e)
+        {
+            C_ManageForm.StartFormTagUpdate(this);
         }
 
         private void UI_BtnUsed_Click(object sender, EventArgs e)
@@ -71,7 +91,7 @@ namespace AssetTermsBox
             UI_BtnKindsFont.BackColor = Color.White;
             UI_BtnKindsSpeech.BackColor = Color.White;
             UI_BtnKindsOther.BackColor = Color.White;
-            Display();
+            Display(false);
             SelectFirstRow();
         }
 
@@ -84,7 +104,7 @@ namespace AssetTermsBox
             UI_BtnKindsFont.BackColor = Color.White;
             UI_BtnKindsSpeech.BackColor = Color.White;
             UI_BtnKindsOther.BackColor = Color.White;
-            Display();
+            Display(false);
             SelectFirstRow();
         }
 
@@ -97,7 +117,7 @@ namespace AssetTermsBox
             UI_BtnKindsFont.BackColor = Color.FromArgb(192, 192, 255);
             UI_BtnKindsSpeech.BackColor = Color.White;
             UI_BtnKindsOther.BackColor = Color.White;
-            Display();
+            Display(false);
             SelectFirstRow();
         }
 
@@ -110,7 +130,7 @@ namespace AssetTermsBox
             UI_BtnKindsFont.BackColor = Color.White;
             UI_BtnKindsSpeech.BackColor = Color.FromArgb(192, 192, 255);
             UI_BtnKindsOther.BackColor = Color.White;
-            Display();
+            Display(false);
             SelectFirstRow();
         }
 
@@ -123,19 +143,9 @@ namespace AssetTermsBox
             UI_BtnKindsFont.BackColor = Color.White;
             UI_BtnKindsSpeech.BackColor = Color.White;
             UI_BtnKindsOther.BackColor = Color.FromArgb(192, 192, 255);
-            Display();
+            Display(false);
             SelectFirstRow();
         }
-
-
-        private void FormMain_Actibated(object sender, EventArgs e)
-        {
-            Display();
-            SelectRow();
-
-            ReadyOk();
-        }
-
 
 
         ////////////////////////////////////////////////////////////
@@ -177,9 +187,153 @@ namespace AssetTermsBox
 
         }
 
-        // 画面有効時
-        private void Display()
+        private Dictionary<int, Dictionary<string, string>> GetDataList()
         {
+            C_OperateSql sql = new C_OperateSql();
+            string[] columns = { "id", "name", "holder_id", "bookmark" };
+            string where = "";
+
+            string searchCreator = UI_ComboSearchHolder.Text;
+            bool searchFavorite = UI_CheckSearchBookmark.Checked;
+            string[] searchTag = new string[UI_CheckedListSearchTag.CheckedItems.Count];
+            int cnt = 0;
+            foreach (string item in UI_CheckedListSearchTag.CheckedItems)
+            {
+                searchTag[cnt] = item;
+                cnt++;
+            }
+
+
+
+            // 検索条件（WHERE）
+            where += "kinds = " + kindsValue;
+            if (searchCreator != "")
+            {
+                Dictionary<string, string> holderData = TD_HOLDER.SelectDataWhereName(searchCreator);
+                if (holderData != null)
+                {
+                    if (where != "")
+                    {
+                        where += " AND ";
+                    }
+                    where += "holder_id = N'" + holderData["id"] + "'";
+                }
+            }
+            if (searchFavorite == true)
+            {
+                if (where != "")
+                {
+                    where += " AND ";
+                }
+                where += "bookmark = 1";
+            }
+            if (searchTag.Length > 0)
+            {
+                // SQL: SELECT（タグのid検索）
+                string tagSelectWhere = "";
+                foreach (string item in searchTag)
+                {
+                    if (tagSelectWhere != "")
+                    {
+                        tagSelectWhere += " OR ";
+                    }
+                    tagSelectWhere += "name = N'" + item + "'";
+                }
+                string[] tagSelectColumns = { "id" };
+                Dictionary<int, Dictionary<string, string>> tagIdResult = sql.Select("TAG", tagSelectColumns, tagSelectWhere);
+
+                string[] tagIdList = new string[tagIdResult.Count];
+                for (int count = 0; count < tagIdResult.Count; count++)
+                {
+                    Dictionary<string, string> tagIdData = tagIdResult[count];
+                    tagIdList[count] = tagIdData["id"];
+                }
+
+                // tag_idを元にwork_idを取得
+                string[] workIdList = TD_ASSET_TAG.SelectAssetIdWhereTagId(tagIdList);
+
+                // WHERE文を作成
+                if (workIdList.Count() > 0)
+                {
+                    string addWhere = "";
+                    if (where != "")
+                    {
+                        where += "AND (";
+                    }
+                    else
+                    {
+                        where += "(";
+                    }
+                    bool flagAddWhere = false;
+                    foreach (string item in workIdList)
+                    {
+                        if (flagAddWhere == true)
+                        {
+                            addWhere += " OR ";
+                        }
+                        addWhere += "id = " + item;
+                        flagAddWhere = true;
+                    }
+                    addWhere += ")";
+                    where += addWhere;
+                }
+                else
+                {
+                    // 他の検索条件が指定されているが、タグが一致するものがすでにない
+                    if (where != "")
+                    {
+                        return null;
+                    }
+                }
+            }
+
+            // タグが指定されているのに検索条件がない
+            if (searchTag.Count() > 0 && where == "")
+            {
+                return null;
+            }
+
+            // SELECT
+            return sql.Select("ASSET", columns, where);
+        }
+
+        // 画面有効時
+        public void Display(bool searchUpdate)
+        {
+            Dictionary<int, Dictionary<string, string>> holderList = TD_HOLDER.SelectData();
+
+            if (searchUpdate == true)
+            {
+                UI_ComboSearchHolder.Text = "";
+                UI_CheckSearchBookmark.Checked = false;
+                ////////////////////////////////////////////////////////////
+                // 検索条件：権利元名
+                ////////////////////////////////////////////////////////////
+                UI_ComboSearchHolder.Items.Clear();
+                for (int count = 0; count < holderList.Count(); count++)
+                {
+                    UI_ComboSearchHolder.Items.Add(holderList[count]["name"]);
+                }
+
+
+                ////////////////////////////////////////////////////////////
+                /// タグ一覧
+                ////////////////////////////////////////////////////////////
+                UI_CheckedListSearchTag.Items.Clear();
+                Dictionary<int, Dictionary<string, string>> result = TD_TAG.SelectAllData();
+                // コンボボックスに値を入れる
+                for (int count = 0; count < result.Count; count++)
+                {
+                    Dictionary<string, string> data = result[count];
+                    UI_CheckedListSearchTag.Items.Add(data["name"]);
+                }
+            }
+
+
+            ////////////////////////////////////////////////////////////
+            /// 素材一覧
+            ////////////////////////////////////////////////////////////
+
             // リストのソート条件を取得
             CD_ListSort listSort = new CD_ListSort(UI_DataGridView.SortedColumn, UI_DataGridView.SortOrder);
 
@@ -193,8 +347,8 @@ namespace AssetTermsBox
             // リストのクリア
             UI_DataGridView.Rows.Clear();
             // データの取得
-            Dictionary<int, Dictionary<string, string>> dataList = TD_ASSET.SelectData(kindsValue);
-            Dictionary<int, Dictionary<string, string>> holderList = TD_HOLDER.SelectData();
+            Dictionary<int, Dictionary<string, string>> dataList = GetDataList();
+            
             if (dataList == null)
             {
                 return;
@@ -253,8 +407,8 @@ namespace AssetTermsBox
             if (UI_DataGridView.Rows.Count > 0)
             {
                 UI_DataGridView.Rows[0].Selected = true;
-                SelectRow();
             }
+            SelectRow();
             return;
         }
 
@@ -262,6 +416,12 @@ namespace AssetTermsBox
         // 行選択時
         private void SelectRow()
         {
+            UI_TextParent.Text = "";
+            UI_TextTerms.Text = "";
+            UI_TextMemo.Text = "";
+            UI_TextCommonTerms.Text = "";
+            UI_TextTag.Text = "";
+
             if (UI_DataGridView?.CurrentRow == null)
             {
                 return;
@@ -289,6 +449,23 @@ namespace AssetTermsBox
                 UI_BtnAssetUse.BackColor = Color.White;
             }
 
+            // SELECT: ASSET_TAG
+            string[] tagIdList = TD_ASSET_TAG.SelectTagId(assetId);
+            if (tagIdList.Count() == 0)
+            {
+                return;
+            }
+            string[] tagNameList = TD_TAG.SelectNameList(tagIdList);
+            Array.Sort(tagNameList, C_ArraySort.Natural);
+
+            for (int count = 0; count < tagNameList.Count(); count++)
+            {
+                if (count > 0)
+                {
+                    UI_TextTag.Text += "、";
+                }
+                UI_TextTag.Text += tagNameList[count];
+            }
 
             return;
         }
@@ -389,7 +566,7 @@ namespace AssetTermsBox
         }
 
 
-        private void ReadyOk()
+        public void ReadyOk()
         {
             UI_TextWorkFile.Text = C_ManageWorkDataFile.GetWorkDataFilePath();
             if (UI_TextWorkFile.Text == "")
@@ -404,6 +581,28 @@ namespace AssetTermsBox
             return;
         }
 
+        private void UI_ComboSearchHolder_Leave(object sender, EventArgs e)
+        {
+            Display(false);
+            SelectRow();
+        }
 
+        private void UI_ComboSearchHolder_Select(object sender, EventArgs e)
+        {
+            Display(false);
+            SelectRow();
+        }
+
+        private void UI_CheckedListSearchTag_Leave(object sender, EventArgs e)
+        {
+            Display(false);
+            SelectRow();
+        }
+
+        private void UI_CheckSearchBookmark_Checked(object sender, EventArgs e)
+        {
+            Display(false);
+            SelectRow();
+        }
     }
 }

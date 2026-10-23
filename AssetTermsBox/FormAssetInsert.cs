@@ -14,11 +14,14 @@ namespace AssetTermsBox
     public partial class FormAssetInsert : Form
     {
         private int kindsValue = 1;
+        FormMain m_formMain = null;
 
 
-        public FormAssetInsert()
+        public FormAssetInsert(FormMain formMain)
         {
             InitializeComponent();
+
+            m_formMain = formMain;
 
             // SELECT: HOLDER
             Dictionary<int, Dictionary<string, string>> holderDataList = TD_HOLDER.SelectData();
@@ -26,6 +29,26 @@ namespace AssetTermsBox
             {
                 Dictionary<string, string> holderData = holderDataList[cnt];
                 UI_ComboHolderName.Items.Add(holderData["name"]);
+            }
+
+            // タグリストの更新
+            updateTagBox();
+            return;
+        }
+
+
+        private void updateTagBox()
+        {
+            UI_CheckedListTag.Items.Clear();
+
+            // SQL：SELECT
+            Dictionary<int, Dictionary<string, string>> tagData = TD_TAG.SelectAllData();
+
+            // コンボボックスに値を入れる
+            for (int count = 0; count < tagData.Count; count++)
+            {
+                Dictionary<string, string> data = tagData[count];
+                UI_CheckedListTag.Items.Add(data["name"]);
             }
 
             return;
@@ -219,9 +242,19 @@ namespace AssetTermsBox
                 kindsValue
             );
 
-
+            //////////
             // 紐づいているタグのINSERT
+            //////////
+            // SQL: SELECT（タグのid検索）
+            if (UI_CheckedListTag.CheckedItems.Count > 0)
+            {
+                string[] tagIdList = TD_TAG.SelectIdList(UI_CheckedListTag);
 
+                foreach (string tagId in tagIdList)
+                {
+                    TD_ASSET_TAG.InsertData(getAssetId, tagId);
+                }
+            }
 
 
             // ファイルの移動
@@ -239,6 +272,8 @@ namespace AssetTermsBox
                 }
 
             }
+
+            m_formMain.Display(true);
 
             this.Dispose();
             return;
@@ -259,6 +294,18 @@ namespace AssetTermsBox
                 return;
             }
             UI_TextCommonTerms.Text = dataList[0]["terms"];
+        }
+
+        private void UI_BtnUpdateList_Click(object sender, EventArgs e)
+        {
+            updateTagBox();
+        }
+
+        private void UI_BtnTagInsert_Click(object sender, EventArgs e)
+        {
+            // window表示
+            C_ManageForm.StartFormTagInsert(null);
+            return;
         }
     }
 }

@@ -65,6 +65,20 @@ namespace AssetTermsBox
             return result[0];
         }
 
+        static public Dictionary<string, string> SelectDataWhereName(string name)
+        {
+            C_OperateSql sql = new C_OperateSql();
+            string[] columns = { "id", "name", "terms" };
+
+            string where = "name = N'" + name + "'";
+            Dictionary<int, Dictionary<string, string>> result = sql.Select(TABLE_NAME, columns, where);
+            if (result.Count() == 0)
+            {
+                return null;
+            }
+            return result[0];
+        }
+
         static public Dictionary<int, Dictionary<string, string>> SelectData()
         {
             C_OperateSql sql = new C_OperateSql();

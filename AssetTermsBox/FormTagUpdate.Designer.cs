@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox6 = new TextBox();
+            UI_TextTag = new TextBox();
             label8 = new Label();
             label1 = new Label();
-            comboBox1 = new ComboBox();
-            button3 = new Button();
+            UI_ComboTag = new ComboBox();
+            UI_BtnUpdate = new Button();
             SuspendLayout();
             // 
-            // textBox6
+            // UI_TextTag
             // 
-            textBox6.Location = new Point(112, 94);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(390, 31);
-            textBox6.TabIndex = 53;
+            UI_TextTag.Location = new Point(112, 94);
+            UI_TextTag.Name = "UI_TextTag";
+            UI_TextTag.Size = new Size(390, 31);
+            UI_TextTag.TabIndex = 53;
             // 
             // label8
             // 
@@ -60,45 +60,48 @@
             label1.TabIndex = 54;
             label1.Text = "変更タグ";
             // 
-            // comboBox1
+            // UI_ComboTag
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(112, 12);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(390, 33);
-            comboBox1.TabIndex = 55;
+            UI_ComboTag.DropDownStyle = ComboBoxStyle.DropDownList;
+            UI_ComboTag.FormattingEnabled = true;
+            UI_ComboTag.Location = new Point(112, 12);
+            UI_ComboTag.Name = "UI_ComboTag";
+            UI_ComboTag.Size = new Size(390, 33);
+            UI_ComboTag.TabIndex = 55;
             // 
-            // button3
+            // UI_BtnUpdate
             // 
-            button3.Location = new Point(452, 163);
-            button3.Name = "button3";
-            button3.Size = new Size(98, 56);
-            button3.TabIndex = 56;
-            button3.Text = "更新";
-            button3.UseVisualStyleBackColor = true;
+            UI_BtnUpdate.Location = new Point(452, 163);
+            UI_BtnUpdate.Name = "UI_BtnUpdate";
+            UI_BtnUpdate.Size = new Size(98, 56);
+            UI_BtnUpdate.TabIndex = 56;
+            UI_BtnUpdate.Text = "更新";
+            UI_BtnUpdate.UseVisualStyleBackColor = true;
+            UI_BtnUpdate.Click += UI_BtnUpdate_Click;
             // 
             // FormTagUpdate
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(562, 228);
-            Controls.Add(button3);
-            Controls.Add(comboBox1);
+            Controls.Add(UI_BtnUpdate);
+            Controls.Add(UI_ComboTag);
             Controls.Add(label1);
-            Controls.Add(textBox6);
+            Controls.Add(UI_TextTag);
             Controls.Add(label8);
             Name = "FormTagUpdate";
             Text = "タグ：更新";
+            FormClosed += FormClose;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TextBox textBox6;
+        private TextBox UI_TextTag;
         private Label label8;
         private Label label1;
-        private ComboBox comboBox1;
-        private Button button3;
+        private ComboBox UI_ComboTag;
+        private Button UI_BtnUpdate;
     }
 }

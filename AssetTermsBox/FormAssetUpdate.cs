@@ -14,11 +14,15 @@ namespace AssetTermsBox
         private int kindsValue = 1;
         private string updateAssetId = "";
 
+        private FormMain m_formMain = null;
+        
 
-        public FormAssetUpdate(string assetId)
+
+        public FormAssetUpdate(FormMain formMain, string assetId)
         {
             InitializeComponent();
 
+            m_formMain = formMain;
             updateAssetId = assetId;
 
             // SELECT: HOLDER
@@ -61,14 +65,28 @@ namespace AssetTermsBox
                     break;
             }
 
-
-
-
-
             Dictionary<string, string> holderData = TD_HOLDER.SelectDataOne(assetData["holder_id"]);
             UI_ComboHolderName.Text = holderData["name"];
             UI_TextCommonTerms.Text = holderData["terms"];
 
+
+            // タグのSQL
+            Dictionary<int, Dictionary<string, string>> tagResult = TD_TAG.SelectAllData();
+
+            // コンボボックスに値を入れる
+            for (int count = 0; count < tagResult.Count; count++)
+            {
+                Dictionary<string, string> tagData = tagResult[count];
+                UI_CheckedListTag.Items.Add(tagData["name"]);
+            }
+
+            // タグのチェック
+            string[] nameList = C_LinkWorkTag.GetTagNameByWorkId(assetId);
+            foreach (string name in nameList)
+            {
+                int index = UI_CheckedListTag.Items.IndexOf(name);
+                UI_CheckedListTag.SetItemChecked(index, true);
+            }
 
             return;
         }
@@ -245,12 +263,27 @@ namespace AssetTermsBox
             );
 
 
+
+
+            
+
             // 今回のassetIdのタグをすべて削除
+            TD_ASSET_TAG.DeleteDataByAssetId(updateAssetId);
 
             // 紐づいているタグのINSERT
+            if (UI_CheckedListTag.CheckedItems.Count > 0)
+            {
+                string[] tagIdList = TD_TAG.SelectIdList(UI_CheckedListTag);
+
+                foreach (string tagId in tagIdList)
+                {
+                    TD_ASSET_TAG.InsertData(updateAssetId, tagId);
+                }
+            }
 
 
 
+            m_formMain.Display(true);
 
 
             this.Dispose();

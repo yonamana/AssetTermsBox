@@ -33,7 +33,6 @@
             label2 = new Label();
             UI_TextParent = new TextBox();
             UI_BtnUpdate = new Button();
-            button2 = new Button();
             UI_CheckedListTag = new CheckedListBox();
             label10 = new Label();
             UI_TextCommonTerms = new TextBox();
@@ -97,15 +96,6 @@
             UI_BtnUpdate.Text = "更新";
             UI_BtnUpdate.UseVisualStyleBackColor = true;
             UI_BtnUpdate.Click += UI_BtnUpdate_Click;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(1007, 536);
-            button2.Name = "button2";
-            button2.Size = new Size(98, 65);
-            button2.TabIndex = 73;
-            button2.Text = "未実装";
-            button2.UseVisualStyleBackColor = true;
             // 
             // UI_CheckedListTag
             // 
@@ -271,7 +261,6 @@
             Controls.Add(label2);
             Controls.Add(UI_TextParent);
             Controls.Add(UI_BtnUpdate);
-            Controls.Add(button2);
             Controls.Add(UI_CheckedListTag);
             Controls.Add(label10);
             Controls.Add(UI_TextCommonTerms);
@@ -302,7 +291,6 @@
         private Label label2;
         private TextBox UI_TextParent;
         private Button UI_BtnUpdate;
-        private Button button2;
         private CheckedListBox UI_CheckedListTag;
         private Label label10;
         private TextBox UI_TextCommonTerms;

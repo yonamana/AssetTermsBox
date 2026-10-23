@@ -9,15 +9,17 @@ namespace AssetTermsBox
         static FormWorkStart m_formWorkStart = null;
         static FormAssetInsert m_formAssetInsert = null;
         static FormAssetUpdate m_formAssetUpdate = null;
+        static FormTagInsert m_formTagInsert = null;
+        static FormTagUpdate m_formTagUpdate = null;
         static FormUsed m_formUsed = null;
 
 
-        static public void StartWorkStart()
+        static public void StartWorkStart(FormMain formMain)
         {
             // フォーム表示
             if (m_formWorkStart == null || m_formWorkStart.IsDisposed == true)
             {
-                m_formWorkStart = new FormWorkStart();
+                m_formWorkStart = new FormWorkStart(formMain);
                 m_formWorkStart.ShowDialog();
             }
             else
@@ -29,12 +31,12 @@ namespace AssetTermsBox
         }
 
 
-        static public void StartAssetInsert()
+        static public void StartAssetInsert(FormMain formMain)
         {
             // フォーム表示
             if (m_formAssetInsert == null || m_formAssetInsert.IsDisposed == true)
             {
-                m_formAssetInsert = new FormAssetInsert();
+                m_formAssetInsert = new FormAssetInsert(formMain);
                 m_formAssetInsert.ShowDialog();
             }
             else
@@ -45,18 +47,50 @@ namespace AssetTermsBox
             return;
         }
 
-        static public void StartAssetUpdate(string assetId)
+        static public void StartAssetUpdate(FormMain formMain, string assetId)
         {
             // フォーム表示
             if (m_formAssetUpdate == null || m_formAssetUpdate.IsDisposed == true)
             {
-                m_formAssetUpdate = new FormAssetUpdate(assetId);
+                m_formAssetUpdate = new FormAssetUpdate(formMain, assetId);
                 m_formAssetUpdate.ShowDialog();
             }
             else
             {
                 m_formAssetUpdate.WindowState = FormWindowState.Normal;
                 m_formAssetUpdate.Activate();
+            }
+            return;
+        }
+
+        static public void StartFormTagInsert(FormMain formMain)
+        {
+            // フォーム表示
+            if (m_formTagInsert == null || m_formTagInsert.IsDisposed == true)
+            {
+                m_formTagInsert = new FormTagInsert(formMain);
+                m_formTagInsert.ShowDialog();
+            }
+            else
+            {
+                m_formTagInsert.WindowState = FormWindowState.Normal;
+                m_formTagInsert.Activate();
+            }
+            return;
+        }
+
+        static public void StartFormTagUpdate(FormMain formMain)
+        {
+            // フォーム表示
+            if (m_formTagUpdate == null || m_formTagUpdate.IsDisposed == true)
+            {
+                m_formTagUpdate = new FormTagUpdate(formMain);
+                m_formTagUpdate.ShowDialog();
+            }
+            else
+            {
+                m_formTagUpdate.WindowState = FormWindowState.Normal;
+                m_formTagUpdate.Activate();
             }
             return;
         }

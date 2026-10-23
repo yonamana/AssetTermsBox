@@ -11,9 +11,13 @@ namespace AssetTermsBox
 {
     public partial class FormWorkStart : Form
     {
-        public FormWorkStart()
+        FormMain m_formMain = null;
+
+        public FormWorkStart(FormMain formMain)
         {
             InitializeComponent();
+
+            m_formMain = formMain;
         }
 
         private void FormClose(object sender, FormClosedEventArgs e)
@@ -49,6 +53,8 @@ namespace AssetTermsBox
             File.Create(createFilePath).Close();
 
             C_ManageWorkDataFile.SetWorkDataFilePath(createFilePath);
+
+            m_formMain.ReadyOk();
 
             this.Dispose();
             return;

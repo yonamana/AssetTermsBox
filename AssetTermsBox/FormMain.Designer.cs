@@ -50,7 +50,7 @@
             UI_BtnTagInsert = new Button();
             label1 = new Label();
             label2 = new Label();
-            button18 = new Button();
+            UI_BtnFolder = new Button();
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
@@ -61,19 +61,19 @@
             UI_TextMemo = new TextBox();
             UI_TextParent = new TextBox();
             label3 = new Label();
-            textBox6 = new TextBox();
-            checkedListBox1 = new CheckedListBox();
+            UI_CheckedListSearchTag = new CheckedListBox();
             UI_BtnSearch = new Button();
             UI_BtnReset = new Button();
             UI_TextTerms = new TextBox();
             UI_TextCommonTerms = new TextBox();
             pictureBox1 = new PictureBox();
-            checkBox1 = new CheckBox();
+            UI_CheckSearchBookmark = new CheckBox();
             UI_BtnAssetInsert = new Button();
             UI_BtnAssetUpdate = new Button();
             UI_BtnAssetDelete = new Button();
             UI_TextWorkFile = new TextBox();
             label9 = new Label();
+            UI_ComboSearchHolder = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)UI_DataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -258,8 +258,9 @@
             UI_BtnTagUpdate.Name = "UI_BtnTagUpdate";
             UI_BtnTagUpdate.Size = new Size(100, 50);
             UI_BtnTagUpdate.TabIndex = 13;
-            UI_BtnTagUpdate.Text = "未実装";
+            UI_BtnTagUpdate.Text = "更新";
             UI_BtnTagUpdate.UseVisualStyleBackColor = true;
+            UI_BtnTagUpdate.Click += UI_BtnTagUpdate_Click;
             // 
             // UI_BtnTagInsert
             // 
@@ -268,8 +269,9 @@
             UI_BtnTagInsert.Name = "UI_BtnTagInsert";
             UI_BtnTagInsert.Size = new Size(100, 50);
             UI_BtnTagInsert.TabIndex = 14;
-            UI_BtnTagInsert.Text = "未実装";
+            UI_BtnTagInsert.Text = "登録";
             UI_BtnTagInsert.UseVisualStyleBackColor = true;
+            UI_BtnTagInsert.Click += UI_BtnTagInsert_Click;
             // 
             // label1
             // 
@@ -291,16 +293,16 @@
             label2.TabIndex = 19;
             label2.Text = "素材管理";
             // 
-            // button18
+            // UI_BtnFolder
             // 
-            button18.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button18.BackColor = Color.FromArgb(255, 255, 192);
-            button18.Location = new Point(957, 863);
-            button18.Name = "button18";
-            button18.Size = new Size(98, 74);
-            button18.TabIndex = 20;
-            button18.Text = "未実装";
-            button18.UseVisualStyleBackColor = false;
+            UI_BtnFolder.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            UI_BtnFolder.BackColor = Color.FromArgb(255, 255, 192);
+            UI_BtnFolder.Location = new Point(957, 863);
+            UI_BtnFolder.Name = "UI_BtnFolder";
+            UI_BtnFolder.Size = new Size(98, 74);
+            UI_BtnFolder.TabIndex = 20;
+            UI_BtnFolder.Text = "未実装";
+            UI_BtnFolder.UseVisualStyleBackColor = false;
             // 
             // label4
             // 
@@ -401,20 +403,14 @@
             label3.TabIndex = 34;
             label3.Text = "タグ";
             // 
-            // textBox6
+            // UI_CheckedListSearchTag
             // 
-            textBox6.Location = new Point(12, 185);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(306, 31);
-            textBox6.TabIndex = 35;
-            // 
-            // checkedListBox1
-            // 
-            checkedListBox1.FormattingEnabled = true;
-            checkedListBox1.Location = new Point(12, 278);
-            checkedListBox1.Name = "checkedListBox1";
-            checkedListBox1.Size = new Size(306, 200);
-            checkedListBox1.TabIndex = 36;
+            UI_CheckedListSearchTag.FormattingEnabled = true;
+            UI_CheckedListSearchTag.Location = new Point(12, 278);
+            UI_CheckedListSearchTag.Name = "UI_CheckedListSearchTag";
+            UI_CheckedListSearchTag.Size = new Size(306, 200);
+            UI_CheckedListSearchTag.TabIndex = 36;
+            UI_CheckedListSearchTag.Leave += UI_CheckedListSearchTag_Leave;
             // 
             // UI_BtnSearch
             // 
@@ -469,16 +465,17 @@
             pictureBox1.TabIndex = 41;
             pictureBox1.TabStop = false;
             // 
-            // checkBox1
+            // UI_CheckSearchBookmark
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.CheckAlign = ContentAlignment.MiddleRight;
-            checkBox1.Location = new Point(12, 222);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(115, 29);
-            checkBox1.TabIndex = 42;
-            checkBox1.Text = "ブックマーク";
-            checkBox1.UseVisualStyleBackColor = true;
+            UI_CheckSearchBookmark.AutoSize = true;
+            UI_CheckSearchBookmark.CheckAlign = ContentAlignment.MiddleRight;
+            UI_CheckSearchBookmark.Location = new Point(12, 222);
+            UI_CheckSearchBookmark.Name = "UI_CheckSearchBookmark";
+            UI_CheckSearchBookmark.Size = new Size(115, 29);
+            UI_CheckSearchBookmark.TabIndex = 42;
+            UI_CheckSearchBookmark.Text = "ブックマーク";
+            UI_CheckSearchBookmark.UseVisualStyleBackColor = true;
+            UI_CheckSearchBookmark.CheckedChanged += UI_CheckSearchBookmark_Checked;
             // 
             // UI_BtnAssetInsert
             // 
@@ -530,25 +527,35 @@
             label9.TabIndex = 47;
             label9.Text = "Ver.0.2.0";
             // 
+            // UI_ComboSearchHolder
+            // 
+            UI_ComboSearchHolder.FormattingEnabled = true;
+            UI_ComboSearchHolder.Location = new Point(12, 183);
+            UI_ComboSearchHolder.Name = "UI_ComboSearchHolder";
+            UI_ComboSearchHolder.Size = new Size(306, 33);
+            UI_ComboSearchHolder.TabIndex = 48;
+            UI_ComboSearchHolder.SelectedIndexChanged += UI_ComboSearchHolder_Select;
+            UI_ComboSearchHolder.Leave += UI_ComboSearchHolder_Leave;
+            // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             ClientSize = new Size(1578, 944);
+            Controls.Add(UI_ComboSearchHolder);
             Controls.Add(label9);
             Controls.Add(UI_TextWorkFile);
             Controls.Add(UI_BtnAssetInsert);
             Controls.Add(UI_BtnAssetUpdate);
             Controls.Add(UI_BtnAssetDelete);
-            Controls.Add(checkBox1);
+            Controls.Add(UI_CheckSearchBookmark);
             Controls.Add(pictureBox1);
             Controls.Add(UI_TextCommonTerms);
             Controls.Add(UI_TextTerms);
             Controls.Add(UI_BtnReset);
             Controls.Add(UI_BtnSearch);
-            Controls.Add(checkedListBox1);
-            Controls.Add(textBox6);
+            Controls.Add(UI_CheckedListSearchTag);
             Controls.Add(label3);
             Controls.Add(UI_TextParent);
             Controls.Add(UI_TextMemo);
@@ -559,7 +566,7 @@
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
-            Controls.Add(button18);
+            Controls.Add(UI_BtnFolder);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(UI_BtnTagInsert);
@@ -581,7 +588,6 @@
             MinimumSize = new Size(1600, 1000);
             Name = "FormMain";
             Text = "素材規約箱";
-            Activated += FormMain_Actibated;
             ((System.ComponentModel.ISupportInitialize)UI_DataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
@@ -607,7 +613,7 @@
         private Button UI_BtnTagInsert;
         private Label label1;
         private Label label2;
-        private Button button18;
+        private Button UI_BtnFolder;
         private Label label4;
         private Label label5;
         private Label label6;
@@ -618,14 +624,13 @@
         private TextBox UI_TextMemo;
         private TextBox UI_TextParent;
         private Label label3;
-        private TextBox textBox6;
-        private CheckedListBox checkedListBox1;
+        private CheckedListBox UI_CheckedListSearchTag;
         private Button UI_BtnSearch;
         private Button UI_BtnReset;
         private TextBox UI_TextTerms;
         private TextBox UI_TextCommonTerms;
         private PictureBox pictureBox1;
-        private CheckBox checkBox1;
+        private CheckBox UI_CheckSearchBookmark;
         private Button UI_BtnAssetInsert;
         private Button UI_BtnAssetUpdate;
         private Button UI_BtnAssetDelete;
@@ -635,5 +640,6 @@
         private DataGridViewTextBoxColumn bookmark;
         private TextBox UI_TextWorkFile;
         private Label label9;
+        private ComboBox UI_ComboSearchHolder;
     }
 }

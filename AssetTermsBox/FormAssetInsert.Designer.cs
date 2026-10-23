@@ -46,12 +46,13 @@
             label4 = new Label();
             UI_CheckedListTag = new CheckedListBox();
             label10 = new Label();
-            button2 = new Button();
+            UI_BtnTagInsert = new Button();
             UI_BtnInsert = new Button();
             label2 = new Label();
             UI_TextParent = new TextBox();
             UI_ComboHolderName = new ComboBox();
             UI_CheckBookmark = new CheckBox();
+            UI_BtnUpdateList = new Button();
             SuspendLayout();
             // 
             // UI_BtnKindsOther
@@ -226,14 +227,15 @@
             label10.TabIndex = 47;
             label10.Text = "タグ";
             // 
-            // button2
+            // UI_BtnTagInsert
             // 
-            button2.Location = new Point(1007, 536);
-            button2.Name = "button2";
-            button2.Size = new Size(98, 65);
-            button2.TabIndex = 49;
-            button2.Text = "未実装";
-            button2.UseVisualStyleBackColor = true;
+            UI_BtnTagInsert.Location = new Point(1007, 536);
+            UI_BtnTagInsert.Name = "UI_BtnTagInsert";
+            UI_BtnTagInsert.Size = new Size(98, 65);
+            UI_BtnTagInsert.TabIndex = 49;
+            UI_BtnTagInsert.Text = "登録";
+            UI_BtnTagInsert.UseVisualStyleBackColor = true;
+            UI_BtnTagInsert.Click += UI_BtnTagInsert_Click;
             // 
             // UI_BtnInsert
             // 
@@ -281,17 +283,28 @@
             UI_CheckBookmark.Text = "ブックマーク";
             UI_CheckBookmark.UseVisualStyleBackColor = true;
             // 
+            // UI_BtnUpdateList
+            // 
+            UI_BtnUpdateList.Location = new Point(1007, 465);
+            UI_BtnUpdateList.Name = "UI_BtnUpdateList";
+            UI_BtnUpdateList.Size = new Size(98, 65);
+            UI_BtnUpdateList.TabIndex = 55;
+            UI_BtnUpdateList.Text = "リスト更新";
+            UI_BtnUpdateList.UseVisualStyleBackColor = true;
+            UI_BtnUpdateList.Click += UI_BtnUpdateList_Click;
+            // 
             // FormAssetInsert
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1177, 767);
+            Controls.Add(UI_BtnUpdateList);
             Controls.Add(UI_CheckBookmark);
             Controls.Add(UI_ComboHolderName);
             Controls.Add(label2);
             Controls.Add(UI_TextParent);
             Controls.Add(UI_BtnInsert);
-            Controls.Add(button2);
+            Controls.Add(UI_BtnTagInsert);
             Controls.Add(UI_CheckedListTag);
             Controls.Add(label10);
             Controls.Add(UI_TextCommonTerms);
@@ -336,12 +349,13 @@
         private Label label4;
         private CheckedListBox UI_CheckedListTag;
         private Label label10;
-        private Button button2;
+        private Button UI_BtnTagInsert;
         private Button UI_BtnInsert;
         private Label label2;
         private TextBox UI_TextParent;
         private ComboBox UI_ComboHolderName;
         private Button UI_BtnFile;
         private CheckBox UI_CheckBookmark;
+        private Button UI_BtnUpdateList;
     }
 }
