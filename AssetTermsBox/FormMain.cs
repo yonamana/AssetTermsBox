@@ -727,6 +727,10 @@ namespace AssetTermsBox
             return;
         }
 
-
+        private void UI_BtnWorkFolder_Click(object sender, EventArgs e)
+        {
+            C_Dialog.OpenExplorer(C_CreatePath.WorkDataPath());
+            return;
+        }
     }
 }

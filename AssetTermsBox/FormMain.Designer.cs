@@ -36,7 +36,7 @@
             holderName = new DataGridViewTextBoxColumn();
             bookmark = new DataGridViewTextBoxColumn();
             UI_BtnWorkOpen = new Button();
-            UI_BtnWorkDelete = new Button();
+            UI_BtnWorkFolder = new Button();
             UI_BtnKindsImage = new Button();
             UI_BtnKindsSound = new Button();
             UI_BtnKindsFont = new Button();
@@ -143,15 +143,17 @@
             UI_BtnWorkOpen.UseVisualStyleBackColor = true;
             UI_BtnWorkOpen.Click += UI_BtnWorkOpen_Click;
             // 
-            // UI_BtnWorkDelete
+            // UI_BtnWorkFolder
             // 
-            UI_BtnWorkDelete.BackColor = Color.FromArgb(255, 192, 192);
-            UI_BtnWorkDelete.Location = new Point(220, 12);
-            UI_BtnWorkDelete.Name = "UI_BtnWorkDelete";
-            UI_BtnWorkDelete.Size = new Size(98, 65);
-            UI_BtnWorkDelete.TabIndex = 3;
-            UI_BtnWorkDelete.Text = "未実装";
-            UI_BtnWorkDelete.UseVisualStyleBackColor = false;
+            UI_BtnWorkFolder.BackColor = Color.FromArgb(255, 255, 192);
+            UI_BtnWorkFolder.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            UI_BtnWorkFolder.Location = new Point(220, 12);
+            UI_BtnWorkFolder.Name = "UI_BtnWorkFolder";
+            UI_BtnWorkFolder.Size = new Size(98, 65);
+            UI_BtnWorkFolder.TabIndex = 3;
+            UI_BtnWorkFolder.Text = "作業フォルダ";
+            UI_BtnWorkFolder.UseVisualStyleBackColor = false;
+            UI_BtnWorkFolder.Click += UI_BtnWorkFolder_Click;
             // 
             // UI_BtnKindsImage
             // 
@@ -510,7 +512,7 @@
             label9.Name = "label9";
             label9.Size = new Size(78, 25);
             label9.TabIndex = 47;
-            label9.Text = "Ver.0.2.0";
+            label9.Text = "Ver.0.4.0";
             // 
             // UI_ComboSearchHolder
             // 
@@ -564,7 +566,7 @@
             Controls.Add(UI_BtnKindsFont);
             Controls.Add(UI_BtnKindsSound);
             Controls.Add(UI_BtnKindsImage);
-            Controls.Add(UI_BtnWorkDelete);
+            Controls.Add(UI_BtnWorkFolder);
             Controls.Add(UI_BtnWorkOpen);
             Controls.Add(UI_DataGridView);
             Controls.Add(UI_BtnWorkCreate);
@@ -583,7 +585,7 @@
         private Button UI_BtnWorkCreate;
         private DataGridView UI_DataGridView;
         private Button UI_BtnWorkOpen;
-        private Button UI_BtnWorkDelete;
+        private Button UI_BtnWorkFolder;
         private Button UI_BtnKindsImage;
         private Button UI_BtnKindsSound;
         private Button UI_BtnKindsFont;
