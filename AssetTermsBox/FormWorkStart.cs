@@ -53,8 +53,16 @@ namespace AssetTermsBox
             File.Create(createFilePath).Close();
 
             C_ManageWorkDataFile.SetWorkDataFilePath(createFilePath);
+            C_ManageWorkDataFile.LoadFile();
 
             m_formMain.ReadyOk();
+
+            Dictionary<int, Dictionary<string, string>> alwaysAssetData = TD_ASSET.SelectDataWhereAlwaysTrue();
+
+            for (int count = 0; count < alwaysAssetData.Count(); count++)
+            {
+                C_ManageWorkDataFile.UsedAsset(alwaysAssetData[count]["id"]);
+            }
 
             this.Dispose();
             return;

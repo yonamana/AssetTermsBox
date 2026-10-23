@@ -62,11 +62,9 @@
             UI_TextParent = new TextBox();
             label3 = new Label();
             UI_CheckedListSearchTag = new CheckedListBox();
-            UI_BtnSearch = new Button();
-            UI_BtnReset = new Button();
             UI_TextTerms = new TextBox();
             UI_TextCommonTerms = new TextBox();
-            pictureBox1 = new PictureBox();
+            UI_PictureFile = new PictureBox();
             UI_CheckSearchBookmark = new CheckBox();
             UI_BtnAssetInsert = new Button();
             UI_BtnAssetUpdate = new Button();
@@ -75,7 +73,7 @@
             label9 = new Label();
             UI_ComboSearchHolder = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)UI_DataGridView).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)UI_PictureFile).BeginInit();
             SuspendLayout();
             // 
             // UI_BtnWorkCreate
@@ -237,8 +235,9 @@
             UI_BtnAssetAlwaysUse.Name = "UI_BtnAssetAlwaysUse";
             UI_BtnAssetAlwaysUse.Size = new Size(202, 74);
             UI_BtnAssetAlwaysUse.TabIndex = 11;
-            UI_BtnAssetAlwaysUse.Text = "未実装";
+            UI_BtnAssetAlwaysUse.Text = "常に使用";
             UI_BtnAssetAlwaysUse.UseVisualStyleBackColor = false;
+            UI_BtnAssetAlwaysUse.Click += UI_BtnAssetAlwaysUse_Click;
             // 
             // UI_BtnTagDelete
             // 
@@ -301,8 +300,9 @@
             UI_BtnFolder.Name = "UI_BtnFolder";
             UI_BtnFolder.Size = new Size(98, 74);
             UI_BtnFolder.TabIndex = 20;
-            UI_BtnFolder.Text = "未実装";
+            UI_BtnFolder.Text = "フォルダ";
             UI_BtnFolder.UseVisualStyleBackColor = false;
+            UI_BtnFolder.Click += UI_BtnFolder_Click;
             // 
             // label4
             // 
@@ -412,24 +412,6 @@
             UI_CheckedListSearchTag.TabIndex = 36;
             UI_CheckedListSearchTag.Leave += UI_CheckedListSearchTag_Leave;
             // 
-            // UI_BtnSearch
-            // 
-            UI_BtnSearch.Location = new Point(12, 484);
-            UI_BtnSearch.Name = "UI_BtnSearch";
-            UI_BtnSearch.Size = new Size(98, 50);
-            UI_BtnSearch.TabIndex = 37;
-            UI_BtnSearch.Text = "未実装";
-            UI_BtnSearch.UseVisualStyleBackColor = true;
-            // 
-            // UI_BtnReset
-            // 
-            UI_BtnReset.Location = new Point(116, 484);
-            UI_BtnReset.Name = "UI_BtnReset";
-            UI_BtnReset.Size = new Size(98, 50);
-            UI_BtnReset.TabIndex = 38;
-            UI_BtnReset.Text = "未実装";
-            UI_BtnReset.UseVisualStyleBackColor = true;
-            // 
             // UI_TextTerms
             // 
             UI_TextTerms.AcceptsReturn = true;
@@ -456,14 +438,15 @@
             UI_TextCommonTerms.TabIndex = 40;
             UI_TextCommonTerms.WordWrap = false;
             // 
-            // pictureBox1
+            // UI_PictureFile
             // 
-            pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pictureBox1.Location = new Point(1097, 12);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(469, 217);
-            pictureBox1.TabIndex = 41;
-            pictureBox1.TabStop = false;
+            UI_PictureFile.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            UI_PictureFile.Location = new Point(1097, 12);
+            UI_PictureFile.Name = "UI_PictureFile";
+            UI_PictureFile.Size = new Size(469, 217);
+            UI_PictureFile.SizeMode = PictureBoxSizeMode.Zoom;
+            UI_PictureFile.TabIndex = 41;
+            UI_PictureFile.TabStop = false;
             // 
             // UI_CheckSearchBookmark
             // 
@@ -529,6 +512,7 @@
             // 
             // UI_ComboSearchHolder
             // 
+            UI_ComboSearchHolder.DropDownStyle = ComboBoxStyle.DropDownList;
             UI_ComboSearchHolder.FormattingEnabled = true;
             UI_ComboSearchHolder.Location = new Point(12, 183);
             UI_ComboSearchHolder.Name = "UI_ComboSearchHolder";
@@ -550,11 +534,9 @@
             Controls.Add(UI_BtnAssetUpdate);
             Controls.Add(UI_BtnAssetDelete);
             Controls.Add(UI_CheckSearchBookmark);
-            Controls.Add(pictureBox1);
+            Controls.Add(UI_PictureFile);
             Controls.Add(UI_TextCommonTerms);
             Controls.Add(UI_TextTerms);
-            Controls.Add(UI_BtnReset);
-            Controls.Add(UI_BtnSearch);
             Controls.Add(UI_CheckedListSearchTag);
             Controls.Add(label3);
             Controls.Add(UI_TextParent);
@@ -589,7 +571,7 @@
             Name = "FormMain";
             Text = "素材規約箱";
             ((System.ComponentModel.ISupportInitialize)UI_DataGridView).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)UI_PictureFile).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -625,11 +607,9 @@
         private TextBox UI_TextParent;
         private Label label3;
         private CheckedListBox UI_CheckedListSearchTag;
-        private Button UI_BtnSearch;
-        private Button UI_BtnReset;
         private TextBox UI_TextTerms;
         private TextBox UI_TextCommonTerms;
-        private PictureBox pictureBox1;
+        private PictureBox UI_PictureFile;
         private CheckBox UI_CheckSearchBookmark;
         private Button UI_BtnAssetInsert;
         private Button UI_BtnAssetUpdate;

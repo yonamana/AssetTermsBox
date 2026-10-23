@@ -55,7 +55,7 @@ namespace AssetTermsBox
                 {
                     UI_TextTerms.Text += data["terms"] + Environment.NewLine;
                 }
-               
+
 
 
 
@@ -65,7 +65,7 @@ namespace AssetTermsBox
                 {
                     UI_TextParent.Text += data["parent"] + " ";
                 }
-                
+
 
 
 
@@ -84,6 +84,16 @@ namespace AssetTermsBox
         private void UI_BtnClose_Click(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+
+        private void UI_BtnTermsCoppy_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(UI_TextTerms.Text);
+        }
+
+        private void UI_BtnParentCoppy_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(UI_TextParent.Text);
         }
     }
 }

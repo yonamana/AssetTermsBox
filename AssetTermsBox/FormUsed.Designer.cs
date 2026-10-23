@@ -31,8 +31,8 @@
             label6 = new Label();
             label1 = new Label();
             UI_TextParent = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
+            UI_BtnTermsCoppy = new Button();
+            UI_BtnParentCoppy = new Button();
             UI_BtnClose = new Button();
             UI_TextTerms = new TextBox();
             SuspendLayout();
@@ -63,23 +63,25 @@
             UI_TextParent.Size = new Size(548, 31);
             UI_TextParent.TabIndex = 45;
             // 
-            // button1
+            // UI_BtnTermsCoppy
             // 
-            button1.Location = new Point(566, 289);
-            button1.Name = "button1";
-            button1.Size = new Size(98, 60);
-            button1.TabIndex = 46;
-            button1.Text = "未実装";
-            button1.UseVisualStyleBackColor = true;
+            UI_BtnTermsCoppy.Location = new Point(566, 289);
+            UI_BtnTermsCoppy.Name = "UI_BtnTermsCoppy";
+            UI_BtnTermsCoppy.Size = new Size(98, 60);
+            UI_BtnTermsCoppy.TabIndex = 46;
+            UI_BtnTermsCoppy.Text = "コピー";
+            UI_BtnTermsCoppy.UseVisualStyleBackColor = true;
+            UI_BtnTermsCoppy.Click += UI_BtnTermsCoppy_Click;
             // 
-            // button2
+            // UI_BtnParentCoppy
             // 
-            button2.Location = new Point(566, 355);
-            button2.Name = "button2";
-            button2.Size = new Size(98, 56);
-            button2.TabIndex = 47;
-            button2.Text = "未実装";
-            button2.UseVisualStyleBackColor = true;
+            UI_BtnParentCoppy.Location = new Point(566, 355);
+            UI_BtnParentCoppy.Name = "UI_BtnParentCoppy";
+            UI_BtnParentCoppy.Size = new Size(98, 56);
+            UI_BtnParentCoppy.TabIndex = 47;
+            UI_BtnParentCoppy.Text = "コピー";
+            UI_BtnParentCoppy.UseVisualStyleBackColor = true;
+            UI_BtnParentCoppy.Click += UI_BtnParentCoppy_Click;
             // 
             // UI_BtnClose
             // 
@@ -111,8 +113,8 @@
             ClientSize = new Size(677, 512);
             Controls.Add(UI_TextTerms);
             Controls.Add(UI_BtnClose);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(UI_BtnParentCoppy);
+            Controls.Add(UI_BtnTermsCoppy);
             Controls.Add(UI_TextParent);
             Controls.Add(label1);
             Controls.Add(label6);
@@ -129,8 +131,8 @@
         private Label label6;
         private Label label1;
         private TextBox UI_TextParent;
-        private Button button1;
-        private Button button2;
+        private Button UI_BtnTermsCoppy;
+        private Button UI_BtnParentCoppy;
         private Button UI_BtnClose;
         private TextBox UI_TextTerms;
     }

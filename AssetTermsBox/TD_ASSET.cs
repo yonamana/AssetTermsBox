@@ -55,6 +55,19 @@ namespace AssetTermsBox
             string where = "id = " + assetId;
 
             sql.Update(TABLE_NAME, setStr, where);
+            return;
+        }
+
+        static public void UpdateDataSetAlways(string assetId, string always)
+        {
+            C_OperateSql sql = new C_OperateSql();
+            string setStr = "";
+            setStr += "always = " + always;
+
+            string where = "id = " + assetId;
+
+            sql.Update(TABLE_NAME, setStr, where);
+            return;
         }
 
 
@@ -69,7 +82,7 @@ namespace AssetTermsBox
         static public Dictionary<string, string> SelectDataOne(string id)
         {
             C_OperateSql sql = new C_OperateSql();
-            string[] columns = {"name", "holder_id", "parent", "terms", "memo", "bookmark", "kinds" };
+            string[] columns = {"name", "holder_id", "parent", "terms", "memo", "bookmark", "kinds", "always" };
 
             string where = "id = " + id;
             Dictionary<int, Dictionary<string, string>> result = sql.Select(TABLE_NAME, columns, where);
@@ -82,6 +95,16 @@ namespace AssetTermsBox
             string[] columns = { "id", "name", "holder_id", "bookmark" };
 
             string where = "kinds = " + kinds;
+            Dictionary<int, Dictionary<string, string>> result = sql.Select(TABLE_NAME, columns, where);
+            return result;
+        }
+
+        static public Dictionary<int, Dictionary<string, string>> SelectDataWhereAlwaysTrue()
+        {
+            C_OperateSql sql = new C_OperateSql();
+            string[] columns = { "id", "name", "holder_id", "bookmark" };
+
+            string where = "always = 1";
             Dictionary<int, Dictionary<string, string>> result = sql.Select(TABLE_NAME, columns, where);
             return result;
         }

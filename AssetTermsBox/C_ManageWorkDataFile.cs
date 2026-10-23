@@ -77,11 +77,6 @@ namespace AssetTermsBox
 
         static public void LoadFile()
         {
-            if (workDataFilePath == "")
-            {
-                return;
-            }
-
             usedAssetList.Clear();
 
             using (StreamReader sr = new StreamReader(workDataFilePath))

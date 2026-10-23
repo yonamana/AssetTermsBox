@@ -348,7 +348,7 @@ namespace AssetTermsBox
             UI_DataGridView.Rows.Clear();
             // データの取得
             Dictionary<int, Dictionary<string, string>> dataList = GetDataList();
-            
+
             if (dataList == null)
             {
                 return;
@@ -406,7 +406,7 @@ namespace AssetTermsBox
         {
             if (UI_DataGridView.Rows.Count > 0)
             {
-                UI_DataGridView.Rows[0].Selected = true;
+                UI_DataGridView.CurrentCell = UI_DataGridView[0, 0];
             }
             SelectRow();
             return;
@@ -449,23 +449,47 @@ namespace AssetTermsBox
                 UI_BtnAssetUse.BackColor = Color.White;
             }
 
+            if (assetData["always"] == "1")
+            {
+                UI_BtnAssetAlwaysUse.BackColor = Color.FromArgb(192, 255, 192);
+            }
+            else
+            {
+                UI_BtnAssetAlwaysUse.BackColor = Color.White;
+            }
+
             // SELECT: ASSET_TAG
             string[] tagIdList = TD_ASSET_TAG.SelectTagId(assetId);
-            if (tagIdList.Count() == 0)
+            if (tagIdList.Count() > 0)
             {
-                return;
-            }
-            string[] tagNameList = TD_TAG.SelectNameList(tagIdList);
-            Array.Sort(tagNameList, C_ArraySort.Natural);
+                string[] tagNameList = TD_TAG.SelectNameList(tagIdList);
+                Array.Sort(tagNameList, C_ArraySort.Natural);
 
-            for (int count = 0; count < tagNameList.Count(); count++)
-            {
-                if (count > 0)
+                for (int count = 0; count < tagNameList.Count(); count++)
                 {
-                    UI_TextTag.Text += "、";
+                    if (count > 0)
+                    {
+                        UI_TextTag.Text += "、";
+                    }
+                    UI_TextTag.Text += tagNameList[count];
                 }
-                UI_TextTag.Text += tagNameList[count];
             }
+
+
+
+            // サムネイルの表示
+            // ファイルを取得してファイルパスにする
+            string workAssetIdPath = C_CreatePath.WorkFileAssetIdPath(assetId);
+            if (Directory.Exists(workAssetIdPath))
+            {
+                string[] files = System.IO.Directory.GetFiles(workAssetIdPath, "*", System.IO.SearchOption.AllDirectories);
+                if (files.Length > 0)
+                {
+                    UI_PictureFile.ImageLocation = files[0];
+                }
+            }
+
+
 
             return;
         }
@@ -565,6 +589,38 @@ namespace AssetTermsBox
             return;
         }
 
+        private void UI_BtnAssetAlwaysUse_Click(object sender, EventArgs e)
+        {
+            string id = UI_DataGridView.CurrentRow?.Cells["id"].Value?.ToString() ?? "";
+            if (id == "")
+            {
+                return;
+            }
+
+            Dictionary<string, string> assetData = TD_ASSET.SelectDataOne(id);
+
+            // 使用中の場合
+            if (assetData["always"] == "1")
+            {
+                // UPDATE
+                TD_ASSET.UpdateDataSetAlways(id, "0");
+
+                UI_BtnAssetAlwaysUse.BackColor = Color.White;
+            }
+            // 未使用の場合
+            else
+            {
+                // UPDATE
+                TD_ASSET.UpdateDataSetAlways(id, "1");
+
+                C_ManageWorkDataFile.UsedAsset(id);
+
+                UI_BtnAssetAlwaysUse.BackColor = Color.FromArgb(192, 255, 192);
+                UI_BtnAssetUse.BackColor = Color.FromArgb(192, 255, 192);
+            }
+            return;
+        }
+
 
         public void ReadyOk()
         {
@@ -603,6 +659,26 @@ namespace AssetTermsBox
         {
             Display(false);
             SelectRow();
+        }
+
+        private void UI_BtnFolder_Click(object sender, EventArgs e)
+        {
+            string id = UI_DataGridView.CurrentRow?.Cells["id"].Value?.ToString() ?? "";
+            if (id == "")
+            {
+                C_MessageBox.Error("フォルダを開くデータを選択してください。");
+                return;
+            }
+
+            string workAssetIdPath = C_CreatePath.WorkFileAssetIdPath(id);
+            if (!Directory.Exists(workAssetIdPath))
+            {
+                // フォルダがないためドラッグを行わない
+                return;
+            }
+
+            C_Dialog.OpenExplorer(workAssetIdPath);
+            return;
         }
     }
 }
