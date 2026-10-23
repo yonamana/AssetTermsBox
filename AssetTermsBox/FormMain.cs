@@ -1,3 +1,4 @@
+using FolderOpearete;
 using SqlOperate;
 using System.Collections;
 using System.IO;
@@ -75,6 +76,11 @@ namespace AssetTermsBox
         private void UI_BtnTagUpdate_Click(object sender, EventArgs e)
         {
             C_ManageForm.StartFormTagUpdate(this);
+        }
+
+        private void UI_BtnTagDelete_Click(object sender, EventArgs e)
+        {
+            C_ManageForm.StartFormTagDelete(this);
         }
 
         private void UI_BtnUsed_Click(object sender, EventArgs e)
@@ -680,5 +686,47 @@ namespace AssetTermsBox
             C_Dialog.OpenExplorer(workAssetIdPath);
             return;
         }
+
+        private void UI_BtnAssetDelete_Click(object sender, EventArgs e)
+        {
+            string id = UI_DataGridView.CurrentRow?.Cells["id"].Value?.ToString() ?? "";
+            if (id == "")
+            {
+                C_MessageBox.Error("削除するデータを選択してください。");
+                return;
+            }
+
+            // 確認メッセージ
+            string message = "「" + UI_DataGridView.CurrentRow?.Cells["holderName"].Value?.ToString() + "」の「";
+            message += UI_DataGridView.CurrentRow?.Cells["name"].Value?.ToString() + "」を削除してよろしいですか？";
+            if (C_MessageBox.Check(message) == false)
+            {
+                return;
+            }
+
+
+            // WORKテーブル
+            TD_ASSET.DeleteData(id);
+
+            // WORK_TAGテーブル
+            TD_ASSET_TAG.DeleteDataByAssetId(id);
+
+            // フォルダ
+            string workFolderPath = C_CreatePath.WorkFileAssetIdPath(id);
+            C_OperateFolder opeFolder = new C_OperateFolder();
+            if (Directory.Exists(workFolderPath) == true)
+            {
+                // 削除の代わりに移動
+                string deleteFolderPath = C_CreatePath.DeleteFilePath(id);
+                opeFolder.Create(deleteFolderPath);
+                opeFolder.FolderMove(workFolderPath, deleteFolderPath);
+            }
+
+            Display(false);
+            SelectRow();
+            return;
+        }
+
+
     }
 }

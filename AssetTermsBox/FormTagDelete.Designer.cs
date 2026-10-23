@@ -30,11 +30,12 @@
         {
             comboBox1 = new ComboBox();
             label1 = new Label();
-            button3 = new Button();
+            Btn_Delete = new Button();
             SuspendLayout();
             // 
             // comboBox1
             // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(123, 12);
             comboBox1.Name = "comboBox1";
@@ -50,25 +51,27 @@
             label1.TabIndex = 56;
             label1.Text = "削除するタグ";
             // 
-            // button3
+            // Btn_Delete
             // 
-            button3.Location = new Point(415, 107);
-            button3.Name = "button3";
-            button3.Size = new Size(98, 56);
-            button3.TabIndex = 58;
-            button3.Text = "削除";
-            button3.UseVisualStyleBackColor = true;
+            Btn_Delete.Location = new Point(415, 107);
+            Btn_Delete.Name = "Btn_Delete";
+            Btn_Delete.Size = new Size(98, 56);
+            Btn_Delete.TabIndex = 58;
+            Btn_Delete.Text = "削除";
+            Btn_Delete.UseVisualStyleBackColor = true;
+            Btn_Delete.Click += Btn_Delete_Click;
             // 
             // FormTagDelete
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(530, 179);
-            Controls.Add(button3);
+            Controls.Add(Btn_Delete);
             Controls.Add(comboBox1);
             Controls.Add(label1);
             Name = "FormTagDelete";
             Text = "FormTagDelete";
+            FormClosed += FormClose;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -77,6 +80,6 @@
 
         private ComboBox comboBox1;
         private Label label1;
-        private Button button3;
+        private Button Btn_Delete;
     }
 }

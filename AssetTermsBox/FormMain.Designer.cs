@@ -247,8 +247,9 @@
             UI_BtnTagDelete.Name = "UI_BtnTagDelete";
             UI_BtnTagDelete.Size = new Size(100, 50);
             UI_BtnTagDelete.TabIndex = 12;
-            UI_BtnTagDelete.Text = "未実装";
+            UI_BtnTagDelete.Text = "削除";
             UI_BtnTagDelete.UseVisualStyleBackColor = false;
+            UI_BtnTagDelete.Click += UI_BtnTagDelete_Click;
             // 
             // UI_BtnTagUpdate
             // 
@@ -490,8 +491,9 @@
             UI_BtnAssetDelete.Name = "UI_BtnAssetDelete";
             UI_BtnAssetDelete.Size = new Size(100, 50);
             UI_BtnAssetDelete.TabIndex = 43;
-            UI_BtnAssetDelete.Text = "未実装";
+            UI_BtnAssetDelete.Text = "削除";
             UI_BtnAssetDelete.UseVisualStyleBackColor = false;
+            UI_BtnAssetDelete.Click += UI_BtnAssetDelete_Click;
             // 
             // UI_TextWorkFile
             // 

@@ -11,6 +11,8 @@ namespace AssetTermsBox
         static FormAssetUpdate m_formAssetUpdate = null;
         static FormTagInsert m_formTagInsert = null;
         static FormTagUpdate m_formTagUpdate = null;
+
+        static FormTagDelete m_formTagDelete = null;
         static FormUsed m_formUsed = null;
 
 
@@ -91,6 +93,22 @@ namespace AssetTermsBox
             {
                 m_formTagUpdate.WindowState = FormWindowState.Normal;
                 m_formTagUpdate.Activate();
+            }
+            return;
+        }
+
+        static public void StartFormTagDelete(FormMain formMain)
+        {
+            // フォーム表示
+            if (m_formTagDelete == null || m_formTagDelete.IsDisposed == true)
+            {
+                m_formTagDelete = new FormTagDelete(formMain);
+                m_formTagDelete.ShowDialog();
+            }
+            else
+            {
+                m_formTagDelete.WindowState = FormWindowState.Normal;
+                m_formTagDelete.Activate();
             }
             return;
         }

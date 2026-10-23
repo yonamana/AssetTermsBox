@@ -56,19 +56,11 @@ namespace AssetTermsBox
                     UI_TextTerms.Text += data["terms"] + Environment.NewLine;
                 }
 
-
-
-
-
                 // 親登録
                 if (data["parent"] != "")
                 {
                     UI_TextParent.Text += data["parent"] + " ";
                 }
-
-
-
-
 
             }
 

@@ -71,10 +71,10 @@ namespace AssetTermsBox
         }
 
 
-        static public void DeleteData()
+        static public void DeleteData(string id)
         {
             C_OperateSql sql = new C_OperateSql();
-            string where = "";
+            string where = "id = " + id;
             sql.Delete(TABLE_NAME, where);
             return;
         }
