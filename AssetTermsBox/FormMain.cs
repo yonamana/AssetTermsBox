@@ -316,6 +316,7 @@ namespace AssetTermsBox
                 // 検索条件：権利元名
                 ////////////////////////////////////////////////////////////
                 UI_ComboSearchHolder.Items.Clear();
+                UI_ComboSearchHolder.Items.Add(""); // 空欄
                 for (int count = 0; count < holderList.Count(); count++)
                 {
                     UI_ComboSearchHolder.Items.Add(holderList[count]["name"]);
@@ -485,6 +486,7 @@ namespace AssetTermsBox
 
             // サムネイルの表示
             // ファイルを取得してファイルパスにする
+            UI_PictureFile.ImageLocation = "";
             string workAssetIdPath = C_CreatePath.WorkFileAssetIdPath(assetId);
             if (Directory.Exists(workAssetIdPath))
             {

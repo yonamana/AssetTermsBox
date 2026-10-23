@@ -58,16 +58,6 @@ namespace AssetTermsBox
 
         private bool CheckInputData()
         {
-            // ファイル
-            if (kindsValue == 1 || kindsValue == 2)
-            {
-                if (UI_TextFile.Text.Length == 0)
-                {
-                    C_MessageBox.Error("ファイルを選択してください。");
-                    return false;
-                }
-
-            }
             // 素材名
             if (UI_TextAssetName.Text.Length == 0)
             {
@@ -128,8 +118,6 @@ namespace AssetTermsBox
             UI_BtnKindsFont.BackColor = Color.White;
             UI_BtnKindsSpeech.BackColor = Color.White;
             UI_BtnKindsOther.BackColor = Color.White;
-
-            UI_BtnFile.Enabled = true;
         }
 
         private void UI_BtnKindsSound_Click(object sender, EventArgs e)
@@ -141,8 +129,6 @@ namespace AssetTermsBox
             UI_BtnKindsFont.BackColor = Color.White;
             UI_BtnKindsSpeech.BackColor = Color.White;
             UI_BtnKindsOther.BackColor = Color.White;
-
-            UI_BtnFile.Enabled = true;
         }
 
         private void UI_BtnKindsFont_Click(object sender, EventArgs e)
@@ -154,8 +140,6 @@ namespace AssetTermsBox
             UI_BtnKindsFont.BackColor = Color.FromArgb(192, 192, 255);
             UI_BtnKindsSpeech.BackColor = Color.White;
             UI_BtnKindsOther.BackColor = Color.White;
-
-            UI_BtnFile.Enabled = false;
         }
 
         private void UI_BtnKindsSpeech_Click(object sender, EventArgs e)
@@ -167,8 +151,6 @@ namespace AssetTermsBox
             UI_BtnKindsFont.BackColor = Color.White;
             UI_BtnKindsSpeech.BackColor = Color.FromArgb(192, 192, 255);
             UI_BtnKindsOther.BackColor = Color.White;
-
-            UI_BtnFile.Enabled = false;
         }
 
         private void UI_BtnKindsOther_Click(object sender, EventArgs e)
@@ -180,29 +162,15 @@ namespace AssetTermsBox
             UI_BtnKindsFont.BackColor = Color.White;
             UI_BtnKindsSpeech.BackColor = Color.White;
             UI_BtnKindsOther.BackColor = Color.FromArgb(192, 192, 255);
-
-            UI_BtnFile.Enabled = false;
         }
 
         private void UI_BtnFile_Click(object sender, EventArgs e)
         {
-            if (kindsValue == 1)
+            string GetFileName = C_Dialog.OpenAllFile("");
+            if (GetFileName != "")
             {
-                string GetFileName = C_Dialog.OpenImageFile("");
-                if (GetFileName != "")
-                {
-                    UI_TextFile.Text = GetFileName;
-                    UI_TextAssetName.Text = Path.GetFileName(GetFileName);
-                }
-            }
-            else if (kindsValue == 2)
-            {
-                string GetFileName = C_Dialog.OpenSoundFile("");
-                if (GetFileName != "")
-                {
-                    UI_TextFile.Text = GetFileName;
-                    UI_TextAssetName.Text = Path.GetFileName(GetFileName);
-                }
+                UI_TextFile.Text = GetFileName;
+                UI_TextAssetName.Text = Path.GetFileName(GetFileName);
             }
 
             return;
@@ -258,7 +226,7 @@ namespace AssetTermsBox
 
 
             // ファイルの移動
-            if (kindsValue == 1 || kindsValue == 2)
+            if (UI_TextFile.Text != "")
             {
                 C_OperateFolder opeFolder = new C_OperateFolder();
                 string fileName = Path.GetFileName(UI_TextFile.Text);

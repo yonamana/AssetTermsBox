@@ -35,7 +35,9 @@
             // 
             // UI_TextNewName
             // 
+            UI_TextNewName.BackColor = Color.FromArgb(255, 224, 192);
             UI_TextNewName.Location = new Point(12, 37);
+            UI_TextNewName.MaxLength = 50;
             UI_TextNewName.Name = "UI_TextNewName";
             UI_TextNewName.Size = new Size(354, 31);
             UI_TextNewName.TabIndex = 37;

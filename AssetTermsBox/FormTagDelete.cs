@@ -37,7 +37,7 @@ namespace AssetTermsBox
             // コンボボックス
             if (comboBox1.Text.Length == 0)
             {
-                C_MessageBox.Error("変更するタグを選択してください。");
+                C_MessageBox.Error("削除するタグを選択してください。");
                 return false;
             }
 

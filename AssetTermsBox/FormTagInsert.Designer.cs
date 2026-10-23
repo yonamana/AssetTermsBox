@@ -45,7 +45,9 @@
             // 
             // UI_TextTag
             // 
+            UI_TextTag.BackColor = Color.FromArgb(255, 224, 192);
             UI_TextTag.Location = new Point(12, 37);
+            UI_TextTag.MaxLength = 40;
             UI_TextTag.Name = "UI_TextTag";
             UI_TextTag.Size = new Size(354, 31);
             UI_TextTag.TabIndex = 51;

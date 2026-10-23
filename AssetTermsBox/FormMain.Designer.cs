@@ -512,7 +512,7 @@
             label9.Name = "label9";
             label9.Size = new Size(78, 25);
             label9.TabIndex = 47;
-            label9.Text = "Ver.0.4.0";
+            label9.Text = "Ver.1.0.0";
             // 
             // UI_ComboSearchHolder
             // 

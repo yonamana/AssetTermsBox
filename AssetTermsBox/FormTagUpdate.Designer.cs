@@ -37,7 +37,9 @@
             // 
             // UI_TextTag
             // 
+            UI_TextTag.BackColor = Color.FromArgb(255, 224, 192);
             UI_TextTag.Location = new Point(112, 94);
+            UI_TextTag.MaxLength = 40;
             UI_TextTag.Name = "UI_TextTag";
             UI_TextTag.Size = new Size(390, 31);
             UI_TextTag.TabIndex = 53;
@@ -62,6 +64,7 @@
             // 
             // UI_ComboTag
             // 
+            UI_ComboTag.BackColor = Color.FromArgb(255, 224, 192);
             UI_ComboTag.DropDownStyle = ComboBoxStyle.DropDownList;
             UI_ComboTag.FormattingEnabled = true;
             UI_ComboTag.Location = new Point(112, 12);

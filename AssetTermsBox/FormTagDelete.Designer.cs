@@ -35,6 +35,7 @@
             // 
             // comboBox1
             // 
+            comboBox1.BackColor = Color.FromArgb(255, 224, 192);
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(123, 12);

@@ -64,8 +64,10 @@
             // 
             // UI_ComboHolderName
             // 
+            UI_ComboHolderName.BackColor = Color.FromArgb(255, 224, 192);
             UI_ComboHolderName.FormattingEnabled = true;
             UI_ComboHolderName.Location = new Point(131, 206);
+            UI_ComboHolderName.MaxLength = 50;
             UI_ComboHolderName.Name = "UI_ComboHolderName";
             UI_ComboHolderName.Size = new Size(535, 33);
             UI_ComboHolderName.TabIndex = 77;
@@ -83,6 +85,7 @@
             // UI_TextParent
             // 
             UI_TextParent.Location = new Point(131, 563);
+            UI_TextParent.MaxLength = 20;
             UI_TextParent.Name = "UI_TextParent";
             UI_TextParent.Size = new Size(535, 31);
             UI_TextParent.TabIndex = 75;
@@ -118,6 +121,7 @@
             // 
             UI_TextCommonTerms.AcceptsReturn = true;
             UI_TextCommonTerms.Location = new Point(131, 245);
+            UI_TextCommonTerms.MaxLength = 1000;
             UI_TextCommonTerms.Multiline = true;
             UI_TextCommonTerms.Name = "UI_TextCommonTerms";
             UI_TextCommonTerms.ScrollBars = ScrollBars.Both;
@@ -129,6 +133,7 @@
             // 
             UI_TextTerms.AcceptsReturn = true;
             UI_TextTerms.Location = new Point(131, 404);
+            UI_TextTerms.MaxLength = 1000;
             UI_TextTerms.Multiline = true;
             UI_TextTerms.Name = "UI_TextTerms";
             UI_TextTerms.ScrollBars = ScrollBars.Both;
@@ -140,6 +145,7 @@
             // 
             UI_TextMemo.AcceptsReturn = true;
             UI_TextMemo.Location = new Point(131, 600);
+            UI_TextMemo.MaxLength = 1000;
             UI_TextMemo.Multiline = true;
             UI_TextMemo.Name = "UI_TextMemo";
             UI_TextMemo.ScrollBars = ScrollBars.Both;
@@ -194,7 +200,9 @@
             // 
             // UI_TextAssetName
             // 
+            UI_TextAssetName.BackColor = Color.FromArgb(255, 224, 192);
             UI_TextAssetName.Location = new Point(131, 171);
+            UI_TextAssetName.MaxLength = 100;
             UI_TextAssetName.Name = "UI_TextAssetName";
             UI_TextAssetName.Size = new Size(535, 31);
             UI_TextAssetName.TabIndex = 62;
